@@ -338,24 +338,164 @@ addRecipe({
 	],
 });
 
-// ---- 4. ASSEMBLE + EMIT --------------------------------------------------------------------------
-const exportModel = {
-	version: 'V2',
-	craftingSystem: {
-		id: SYSTEM_ID,
-		details: {
-			name: 'Rippers — Harvested Hoplospheres',
-			summary: 'Monster material → shards → hoplospheres, plus the accessory setting recipe.',
-			description: 'The Lodge’s harvested-hoplosphere economy for Rippers Unmasked. Aspects are essences; shards refine into spheres; matrices set banes; remnants set accessories. Built from the hoplosphere-economy brief (source-faithful; no invented rules values). Some runtime fields (progressive salvage yield, per-system check DLs, Scorch tier bands, the Susurrus gathering environment) are STUBBED pending the installed build’s V3 export envelope — search TODO(V3).',
-			author: 'Austin (cubemail.exe) — Rippers Unmasked',
+// ---- 4. TRANSFORM V2-shaped intermediates → schemaVersion 4 (Fabricate 1.9.2) --------------------
+// The collectors above built V2-shaped essences[]/components[]/recipes[] (readable, integrity-checked).
+// Schema 4 (locked from god's live export + the 1.9.2 bundle Recipe model) relocates + renames them:
+//   essences        → system.essenceDefinitions[]
+//   components       → system.components[] (itemUuid → originItemUuid + registeredItemUuid; salvageOptions → salvage.resultGroups)
+//   tools bench/cruc → system.tools[] (NOT components; recipe catalysts → recipe.toolIds)
+//   recipes          → TOP-LEVEL recipes[] (requirementOptions.essences → ingredientSet.essences map;
+//                       .ingredients → ingredientGroups[].options[].match{type:component}; .catalysts → toolIds;
+//                       resultOptions → resultGroups[{id,name,results:[{componentId,quantity}]}])
+//   recipe cards     → system.recipeItemDefinitions[] (the learnable holder; recipeIds links the recipe)
+// Per-recipe DC via recipe.dcOverride (confirmed present in the 1.9.2 bundle) — DECOCTION 13 vs default 10:
+// ONE system, no split (god ratified). SCORCH → resultSelection {provider:"check"} + routed check + macro.
+
+const TOOL_IDS = new Set(['tool-bench', 'tool-crucible']);
+const docByUuid = new Map(itemDocs.map((d) => [compendiumUuid(d._id), d]));
+const meta = (uuid) => { const d = docByUuid.get(uuid) || {}; return { name: d.name || '', img: d.img || 'icons/svg/item-bag.svg', description: d.system?.description || '' }; };
+const asResults = (map) => Object.entries(map).map(([componentId, quantity]) => ({ componentId, quantity }));
+
+// essenceDefinitions (schema-4 essence element)
+const essenceDefinitions = essences.map((e) => ({
+	id: e.id, name: e.name, description: e.description, icon: 'fas fa-mortar-pestle',
+	colorToken: null, enabled: !e.disabled, propertyMacroUuid: null, sourceComponentId: null, sourceItemUuid: null,
+}));
+
+// split V2 components → schema-4 components vs tools
+const sysComponents = [];
+const sysTools = [];
+for (const c of components) {
+	const m = meta(c.itemUuid);
+	if (TOOL_IDS.has(c.id)) {
+		const breakable = c.id === 'tool-crucible'; // Lodge bench never breaks; street crucible is breakable
+		sysTools.push({
+			id: c.id, enabled: true, componentId: null, label: m.name, name: m.name, img: m.img, description: m.description,
+			registeredItemUuid: c.itemUuid, originItemUuid: c.itemUuid, aliasItemUuids: [],
+			requirement: null, prerequisites: { enabled: false, ids: [], gateMode: 'usability' }, bonus: { enabled: false, expression: '' },
+			breakage: { mode: 'limitedUses', maxUses: null }, checkBreakable: breakable, onBreak: { mode: 'destroy' }, repairRequirements: [],
+		});
+		continue;
+	}
+	const hasSalvage = c.salvageOptions.length > 0;
+	sysComponents.push({
+		id: c.id, name: m.name, img: m.img, description: m.description,
+		originItemUuid: c.itemUuid, registeredItemUuid: c.itemUuid, aliasItemUuids: [],
+		tier: null, category: 'general', tags: [], essences: c.essences,
+		salvage: hasSalvage
+			? {
+				enabled: true, allowPlayerResultReorder: true, ingredientQuantity: 1, dcOverride: null, toolIds: [],
+				// TODO(tune): RENDERING progressive 1–2-rising yield lives in system.salvageCraftingCheck.progressive.rollFormula.
+				resultGroups: c.salvageOptions.map((so) => ({ id: so.id, name: so.name, results: asResults(so.results) })),
+			}
+			: { enabled: false, allowPlayerResultReorder: true, ingredientQuantity: 1, dcOverride: null, toolIds: [], resultGroups: [] },
+	});
+}
+
+// recipes → top-level recipes[] + recipeItemDefinitions[]
+const DECOCTION_DC = 13; // brief §5.3 DL ~13; FIXATION/others use the system default (10) via dcOverride:null
+const sysRecipes = [];
+const recipeItemDefinitions = [];
+for (const r of recipes) {
+	const rq = r.requirementOptions[0];
+	const toolIds = Object.keys(rq.catalysts);
+	const ingredientGroups = Object.entries(rq.ingredients).map(([componentId, quantity]) => ({
+		id: `grp-${componentId}`, options: [{ quantity, match: { type: 'component', componentId } }],
+	}));
+	const ingredientSets = [{ id: `${r.id}-set`, essences: rq.essences, ingredientGroups }];
+	const resultGroups = r.resultOptions.map((o) => ({ id: o.id, name: o.name, results: asResults(o.results) }));
+	const routed = r.id === 'the-scorch';
+	const dcOverride = r.id.startsWith('decoction-') ? DECOCTION_DC : null;
+
+	sysRecipes.push({
+		id: r.id, name: r.id, enabled: true,
+		ingredientSets, resultGroups, toolIds, catalysts: [], dcOverride,
+		resultSelection: routed ? { provider: 'check' } : null, // SCORCH: routedByCheck (Ruined/Crude/Sound)
+		outcomeRouting: null, checkTierId: null,
+	});
+
+	// the learnable holder item that grants this recipe
+	const cardMeta = meta(r.itemUuid);
+	recipeItemDefinitions.push({
+		id: `card-${r.id}`, name: cardMeta.name, description: cardMeta.description, img: cardMeta.img,
+		originItemUuid: r.itemUuid, registeredItemUuid: r.itemUuid, aliasItemUuids: [], enabled: true,
+		recipeIds: [r.id],
+		caps: {
+			item: { limitUses: false, destroyWhenExhausted: false, whenSpent: 'destroyed' },
+			learn: { consumeOnLearn: false, limitRecipes: false, limitLearning: false, learnScope: 'perInstance', learningMode: 'once', prerequisiteIds: [], characterPrerequisiteIds: [], destroyWhenSpent: false },
 		},
-		disabled: false,
-	},
-	essences,
-	components,
-	recipes,
+	});
+}
+
+// the three system-level checks (shape locked from the empty-system export)
+const checkCommon = () => ({ rollFormula: '', dc: 10, thresholdMode: 'meet', dcMode: 'static', tiers: [], macroUuid: null, checkBreakage: { triggers: [] } });
+const craftingCheck = {
+	enabled: true, mode: 'passFail',
+	consumption: { consumeIngredientsOnFail: false, breakToolsOnFail: false }, // FIXATION/DECOCTION/etc. return on failure
+	failureResultPolicy: 'perRecord',
+	simple: checkCommon(), // default DC 10; DECOCTION overrides to 13 via recipe.dcOverride
+	routed: { type: 'relative', rollFormula: '', dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
+	// ↑ SCORCH routed check. macroUuid: null — after import, the GM makes a Macro from macros/scorch-check.js and
+	//   sets routed.macroUuid to it (Ruined/Crude/Sound tier bands; TODO(V3): populate tiers/outcomes from a live routed export).
+	progressive: { awardMode: 'equal', rollFormula: '', checkBreakage: { triggers: [] } },
+	outcomes: ['fail', 'pass'], defaultModifierPolicy: 'addAll', defaultModifierIds: [],
+};
+const salvageCraftingCheck = {
+	enabled: false, // RENDERING yields without a gate; the 1–2-rising yield is a tunable progressive rollFormula below
+	consumption: { consumeComponentOnFail: true, breakToolsOnFail: false }, failureResultPolicy: 'perRecord',
+	simple: checkCommon(),
+	routed: { type: 'relative', rollFormula: '', dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
+	progressive: { awardMode: 'equal', rollFormula: '1d2', checkBreakage: { triggers: [] } }, // brief: start yield 1–2, tunable
+	outcomes: ['fail', 'pass'], defaultModifierPolicy: 'addAll', defaultModifierIds: [],
+};
+const gatheringCraftingCheck = {
+	enabled: false, failureResultPolicy: 'perRecord',
+	progressive: { awardMode: 'equal', rollFormula: '', checkBreakage: { triggers: [] } },
+	routed: { type: 'relative', rollFormula: '', dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
+	defaultModifierPolicy: 'addAll', defaultModifierIds: [],
 };
 
+const exportModel = {
+	schemaVersion: 4,
+	fabricateVersion: '1.9.2',
+	exportedAt: new Date().toISOString(),
+	runtimeStateIncluded: false,
+	system: {
+		id: SYSTEM_ID, name: 'Rippers — Harvested Hoplospheres',
+		description: 'The Lodge’s harvested-hoplosphere economy for Rippers Unmasked. Aspects are essences; shards refine into spheres; matrices set banes; remnants set accessories. Source-faithful to the hoplosphere-economy brief; no invented rules values (⚠ owed markers where TFA mechanics belong). The Susurrus gathering environment is not yet authored (features.gathering off) — its element shape needs a live populated-gathering export; Susurrus material still flows through the shard components. Search TODO for tunable starting values.',
+		enabled: true, resolutionMode: 'simple',
+		features: {
+			recipeCategories: true, categories: true, itemTags: true,
+			essences: true, multiStepRecipes: false, propertyMacros: false,
+			craftingChecks: true, outcomeRouting: true, effectTransfer: false,
+			gathering: false, salvage: true, chatOutput: true, itemPiles: false, refundOnPlayerCancel: true,
+		},
+		itemTags: [], visibilityMode: 'knowledge',
+		recipeVisibility: { listMode: 'global', knowledge: { mode: 'itemOrLearned', learn: { dragDropEnabled: true } } },
+		requirements: { time: { enabled: true }, currency: { enabled: false } },
+		essenceDefinitions,
+		recipeItemDefinitions,
+		membershipResolvesByRecipeIds: false, modifiers: [],
+		craftingCheck,
+		salvageResolutionMode: 'simple',
+		toolBreakage: { authority: 'toolSpecific' },
+		salvageCraftingCheck,
+		gatheringCraftingCheck,
+		alchemy: null, // slot EXISTS; Residuum→Alchemy deliberately NOT built (canon: Residuum refuses to refine)
+		teaserConfig: { enabled: false, discoveryMode: 'threshold', fragments: [] }, // slot for 'aspect hidden until Study'; not built
+		componentCategories: [], categoryIcons: {}, componentCategoryIcons: {}, categories: [],
+		components: sysComponents,
+		tools: sysTools,
+		characterPrerequisites: [], gatheringRealmSettings: { enabled: false },
+	},
+	recipes: sysRecipes,
+	gatheringEnvironments: [], // TODO: author the Susurrus pub/press/crowd env once a populated-gathering export locks the element shape
+	gatheringConfig: { system: {}, shared: { vocabularies: {}, conditions: { weather: 'clear', timeOfDay: 'day' } } },
+	currencyConfig: { spendStrategy: 'actorProperty', providerId: '', macros: { canAfford: '', increment: '', decrement: '' }, units: [] },
+	travelConfig: { revealMode: 'manual', modifierVisibility: 'visible', realms: [] },
+};
+
+// ---- 5. EMIT + schema-4 self-consistency ---------------------------------------------------------
 async function emptyDir(dir) {
 	await fs.rm(dir, { recursive: true, force: true });
 	await fs.mkdir(dir, { recursive: true });
@@ -364,34 +504,50 @@ async function emptyDir(dir) {
 async function main() {
 	await emptyDir(PACK_DIR);
 	await fs.mkdir(SYS_DIR, { recursive: true });
-	// one JSON per Foundry Item
 	for (const doc of itemDocs) {
-		const fname = `${doc.type}_${doc._id}.json`;
-		await fs.writeFile(path.join(PACK_DIR, fname), JSON.stringify(doc, null, '\t') + '\n');
+		await fs.writeFile(path.join(PACK_DIR, `${doc.type}_${doc._id}.json`), JSON.stringify(doc, null, '\t') + '\n');
 	}
-	// the crafting-system file
 	await fs.writeFile(path.join(SYS_DIR, 'rippers-hoplosphere-system.json'), JSON.stringify(exportModel, null, '\t') + '\n');
 
-	// integrity checks
-	const compIds = new Set(components.map((c) => c.id));
-	const essIds = new Set(essences.map((e) => e.id));
+	// self-consistency pass over the schema-4 model
+	const compIds = new Set(sysComponents.map((c) => c.id));
+	const toolIds = new Set(sysTools.map((t) => t.id));
+	const essIds = new Set(essenceDefinitions.map((e) => e.id));
+	const recipeIds = new Set(sysRecipes.map((r) => r.id));
+	const packIds = new Set(itemDocs.map((d) => d._id));
+	const uuidOk = (u) => typeof u === 'string' && packIds.has(u.split('.').pop());
 	const problems = [];
-	for (const r of recipes) {
-		for (const opt of r.requirementOptions) {
-			for (const k of Object.keys(opt.ingredients)) if (!compIds.has(k)) problems.push(`${r.id}: ingredient ${k} not a component`);
-			for (const k of Object.keys(opt.catalysts)) if (!compIds.has(k)) problems.push(`${r.id}: catalyst ${k} not a component`);
-			for (const k of Object.keys(opt.essences)) if (!essIds.has(k)) problems.push(`${r.id}: essence ${k} not an essence`);
-		}
-		for (const opt of r.resultOptions) for (const k of Object.keys(opt.results)) if (!compIds.has(k)) problems.push(`${r.id}: product ${k} not a component`);
-	}
-	for (const c of components) for (const opt of c.salvageOptions) for (const k of Object.keys(opt.results)) if (!compIds.has(k)) problems.push(`${c.id}: salvage ${k} not a component`);
-	for (const c of components) for (const k of Object.keys(c.essences)) if (!essIds.has(k)) problems.push(`${c.id}: essence ${k} not an essence`);
 
-	console.log(`Items:     ${itemDocs.length}`);
-	console.log(`Essences:  ${essences.length}`);
-	console.log(`Components:${components.length}`);
-	console.log(`Recipes:   ${recipes.length}`);
-	if (problems.length) { console.error('INTEGRITY PROBLEMS:\n' + problems.join('\n')); process.exit(1); }
-	console.log('Referential integrity: OK');
+	for (const c of sysComponents) {
+		if (!uuidOk(c.originItemUuid) || !uuidOk(c.registeredItemUuid)) problems.push(`component ${c.id}: unresolved item UUID`);
+		for (const k of Object.keys(c.essences)) if (!essIds.has(k)) problems.push(`component ${c.id}: essence ${k} not defined`);
+		for (const g of c.salvage.resultGroups) for (const r of g.results) if (!compIds.has(r.componentId)) problems.push(`component ${c.id}: salvage → ${r.componentId} not a component`);
+	}
+	for (const t of sysTools) if (!uuidOk(t.originItemUuid) || !uuidOk(t.registeredItemUuid)) problems.push(`tool ${t.id}: unresolved item UUID`);
+	for (const r of sysRecipes) {
+		if (r.ingredientSets.length < 1) problems.push(`recipe ${r.id}: no ingredient set`);
+		if (r.resultGroups.length < 1) problems.push(`recipe ${r.id}: no result group`);
+		if (!r.resultSelection && r.resultGroups.length !== 1) problems.push(`recipe ${r.id}: simple mode needs exactly 1 result group (has ${r.resultGroups.length})`);
+		for (const s of r.ingredientSets) {
+			for (const k of Object.keys(s.essences)) if (!essIds.has(k)) problems.push(`recipe ${r.id}: essence ${k} not defined`);
+			for (const g of s.ingredientGroups) for (const o of g.options) if (o.match.type === 'component' && !compIds.has(o.match.componentId)) problems.push(`recipe ${r.id}: ingredient ${o.match.componentId} not a component`);
+		}
+		for (const g of r.resultGroups) for (const p of g.results) if (!compIds.has(p.componentId)) problems.push(`recipe ${r.id}: product ${p.componentId} not a component`);
+		for (const tid of r.toolIds) if (!toolIds.has(tid)) problems.push(`recipe ${r.id}: tool ${tid} not defined`);
+	}
+	for (const d of recipeItemDefinitions) {
+		if (!uuidOk(d.originItemUuid) || !uuidOk(d.registeredItemUuid)) problems.push(`recipeItemDef ${d.id}: unresolved item UUID`);
+		for (const rid of d.recipeIds) if (!recipeIds.has(rid)) problems.push(`recipeItemDef ${d.id}: recipe ${rid} not defined`);
+	}
+
+	console.log(`schemaVersion:        ${exportModel.schemaVersion} (fabricate ${exportModel.fabricateVersion})`);
+	console.log(`Items (compendium):   ${itemDocs.length}`);
+	console.log(`essenceDefinitions:   ${essenceDefinitions.length}`);
+	console.log(`components:            ${sysComponents.length}`);
+	console.log(`tools:                ${sysTools.length}`);
+	console.log(`recipes:              ${sysRecipes.length}`);
+	console.log(`recipeItemDefinitions:${recipeItemDefinitions.length}`);
+	if (problems.length) { console.error('SELF-CONSISTENCY PROBLEMS:\n' + problems.join('\n')); process.exit(1); }
+	console.log('Schema-4 self-consistency: OK');
 }
 main();

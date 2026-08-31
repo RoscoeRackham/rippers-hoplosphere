@@ -1,6 +1,6 @@
 {
 	"name": "rippers-hoplosphere",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"private": true,
 	"type": "module",
 	"description": "Rippers Unmasked — Hoplosphere Economy: a Fabricate crafting-system file + the component Item compendium it binds. Personal-table module.",
