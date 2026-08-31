@@ -1,0 +1,47 @@
+{
+	"folder": null,
+	"name": "Ghastly Sphere",
+	"type": "treasure",
+	"img": "icons/svg/aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": "500z"
+		},
+		"description": "<p><em>Hoplosphere — Ghastly Sphere.</em> Afflictive — inflicts <strong>shaken</strong> (wave-2). Damage/register: air. Sample-list d66 31, Susurrus aspect. Worth ~500z. Mechanical effect (Techno Fantasy Atlas): ⚠ owed.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 500
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "sphere-ghastly"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"sphere": true,
+			"aspect": "susurrus",
+			"coagulable": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHSP000000000030",
+	"_key": "!items!RHSP000000000030"
+}

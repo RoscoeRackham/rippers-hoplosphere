@@ -1,0 +1,45 @@
+{
+	"folder": null,
+	"name": "Swordbreaker Accessory",
+	"type": "treasure",
+	"img": "icons/svg/ice-aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": "1000z"
+		},
+		"description": "<p><em>Accessory.</em> Swordbreaker Accessory. Physical Resistance — the only route to it in this campaign (no physical sphere exists). One accessory slot per character (CRB). Book price 1000z. Exact rare-item rules text: ⚠ owed.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 1000
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "acc-swordbreaker"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"accessory": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHAC000000000043",
+	"_key": "!items!RHAC000000000043"
+}

@@ -1,0 +1,45 @@
+{
+	"folder": null,
+	"name": "The Hyde",
+	"type": "treasure",
+	"img": "icons/svg/ice-aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": "2000z"
+		},
+		"description": "<p><em>Accessory.</em> The Hyde. Weapon Up (melee), set from Hyde sinew. Worked example. One accessory slot per character (CRB). Book price 2000z. Exact rare-item rules text: ⚠ owed.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 2000
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "acc-hyde"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"accessory": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHAC000000000046",
+	"_key": "!items!RHAC000000000046"
+}

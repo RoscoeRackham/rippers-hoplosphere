@@ -1,0 +1,45 @@
+{
+	"folder": null,
+	"name": "Immunity Accessory",
+	"type": "treasure",
+	"img": "icons/svg/ice-aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": "1500z"
+		},
+		"description": "<p><em>Accessory.</em> Immunity Accessory. Table Quality. One accessory slot per character (CRB). Book price 1500z. Exact rare-item rules text: ⚠ owed.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 1500
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "acc-immunity"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"accessory": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHAC000000000044",
+	"_key": "!items!RHAC000000000044"
+}

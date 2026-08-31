@@ -1,0 +1,41 @@
+{
+	"folder": null,
+	"name": "Clotted Remains (Susurrus)",
+	"type": "treasure",
+	"img": "icons/svg/blood.svg",
+	"system": {
+		"subtype": {
+			"value": "material"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>GM-dropped on a kill.</em> Rendered with a blade into shards of its aspect. TODO(V3): progressive salvage yield (start 1–2, rising) — the single number that tunes the whole economy; this V2 build fixes it at 2.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "clot-susurrus"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHCL000000000011",
+	"_key": "!items!RHCL000000000011"
+}

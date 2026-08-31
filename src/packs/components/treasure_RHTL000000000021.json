@@ -1,0 +1,46 @@
+{
+	"folder": null,
+	"name": "Street Crucible",
+	"type": "treasure",
+	"img": "icons/svg/cave.svg",
+	"system": {
+		"subtype": {
+			"value": "material"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>Tool (catalyst).</em> The street crucible. Breakable. Required present for The Scorch; not consumed by the recipe, but may shatter in play (GM-adjudicated).</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "tool-crucible"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"tool": true,
+			"breakable": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHTL000000000021",
+	"_key": "!items!RHTL000000000021"
+}

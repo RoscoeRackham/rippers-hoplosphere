@@ -1,0 +1,46 @@
+{
+	"folder": null,
+	"name": "Lodge Bench",
+	"type": "treasure",
+	"img": "icons/svg/anvil.svg",
+	"system": {
+		"subtype": {
+			"value": "material"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>Tool (catalyst).</em> The licensed bench. Set Immune — never breaks. Required present for Fixation, Decoction, Investiture and Setting; not consumed. A bench requires a Lodge subscription (brief §5).</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "tool-bench"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"tool": true,
+			"breakable": false
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHTL000000000020",
+	"_key": "!items!RHTL000000000020"
+}

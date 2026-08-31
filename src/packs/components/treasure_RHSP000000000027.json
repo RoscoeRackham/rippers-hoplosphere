@@ -1,0 +1,47 @@
+{
+	"folder": null,
+	"name": "Scornful Sphere",
+	"type": "treasure",
+	"img": "icons/svg/aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": "500z"
+		},
+		"description": "<p><em>Hoplosphere — Scornful Sphere.</em> Afflictive — inflicts <strong>enraged</strong>. Damage/register: fire. Sample-list d66 53, Empyreuma aspect. Worth ~500z. Mechanical effect (Techno Fantasy Atlas): ⚠ owed.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 500
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "sphere-scornful"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"sphere": true,
+			"aspect": "empyreuma",
+			"coagulable": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHSP000000000027",
+	"_key": "!items!RHSP000000000027"
+}

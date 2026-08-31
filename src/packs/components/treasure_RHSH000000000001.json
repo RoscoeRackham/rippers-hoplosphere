@@ -1,0 +1,41 @@
+{
+	"folder": null,
+	"name": "Algor Shard",
+	"type": "treasure",
+	"img": "icons/svg/circle.svg",
+	"system": {
+		"subtype": {
+			"value": "material"
+		},
+		"summary": {
+			"value": "167z"
+		},
+		"description": "<p><em>Shard — Algor aspect.</em> A fungible, anonymous, aspect-tagged fragment. Mute: it shows no vision (that lives in the assembled sphere).</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 167
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "shard-algor"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHSH000000000001",
+	"_key": "!items!RHSH000000000001"
+}

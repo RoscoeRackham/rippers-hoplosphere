@@ -1,0 +1,47 @@
+{
+	"folder": null,
+	"name": "Arctic Sphere",
+	"type": "treasure",
+	"img": "icons/svg/aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": "500z"
+		},
+		"description": "<p><em>Hoplosphere — Arctic Sphere.</em> Elemental. Damage/register: ice. Sample-list d66 12, Algor aspect. Worth ~500z. Mechanical effect (Techno Fantasy Atlas): ⚠ owed.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 500
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "sphere-arctic"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"sphere": true,
+			"aspect": "algor",
+			"coagulable": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHSP000000000022",
+	"_key": "!items!RHSP000000000022"
+}

@@ -1,0 +1,45 @@
+{
+	"folder": null,
+	"name": "Melmoth",
+	"type": "treasure",
+	"img": "icons/svg/ice-aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>Accessory.</em> Melmoth. Custom off-table Quality, set from the broadsheet. Quality text: ⚠ owed (Austin authors). Worked example — the better template. One accessory slot per character (CRB). Book price nullz. Exact rare-item rules text: ⚠ owed.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "acc-melmoth"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"accessory": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHAC000000000047",
+	"_key": "!items!RHAC000000000047"
+}

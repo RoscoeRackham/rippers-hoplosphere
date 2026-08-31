@@ -1,0 +1,41 @@
+{
+	"folder": null,
+	"name": "Slag",
+	"type": "treasure",
+	"img": "icons/svg/waste.svg",
+	"system": {
+		"subtype": {
+			"value": "material"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>Ruined street work.</em> What a failed Scorch leaves. Ingredients are consumed on failure.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "scrap-slag"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHSL000000000037",
+	"_key": "!items!RHSL000000000037"
+}

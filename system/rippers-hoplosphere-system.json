@@ -1,0 +1,1188 @@
+{
+	"version": "V2",
+	"craftingSystem": {
+		"id": "rippers-hoplosphere",
+		"details": {
+			"name": "Rippers — Harvested Hoplospheres",
+			"summary": "Monster material → shards → hoplospheres, plus the accessory setting recipe.",
+			"description": "The Lodge’s harvested-hoplosphere economy for Rippers Unmasked. Aspects are essences; shards refine into spheres; matrices set banes; remnants set accessories. Built from the hoplosphere-economy brief (source-faithful; no invented rules values). Some runtime fields (progressive salvage yield, per-system check DLs, Scorch tier bands, the Susurrus gathering environment) are STUBBED pending the installed build’s V3 export envelope — search TODO(V3).",
+			"author": "Austin (cubemail.exe) — Rippers Unmasked"
+		},
+		"disabled": false
+	},
+	"essences": [
+		{
+			"id": "algor",
+			"name": "Algor",
+			"tooltip": "Algor — ice",
+			"iconCode": "fa-droplet",
+			"disabled": false,
+			"description": "The ice register. Lodge term for the aspect that presents as cold. From <em>algor mortis</em>, the cooling of a corpse.",
+			"craftingSystemId": "rippers-hoplosphere",
+			"activeEffectSourceItemUuid": ""
+		},
+		{
+			"id": "sordes",
+			"name": "Sordes",
+			"tooltip": "Sordes — poison",
+			"iconCode": "fa-droplet",
+			"disabled": false,
+			"description": "The poison register. Street counterpart: <em>the crust</em>. From <em>sordes</em>, the foul crust on a fever patient’s lips.",
+			"craftingSystemId": "rippers-hoplosphere",
+			"activeEffectSourceItemUuid": ""
+		},
+		{
+			"id": "inanition",
+			"name": "Inanition",
+			"tooltip": "Inanition — dark",
+			"iconCode": "fa-droplet",
+			"disabled": false,
+			"description": "The dark register. Street counterpart: <em>the hollow</em>. From <em>inanition</em>, death by emptiness.",
+			"craftingSystemId": "rippers-hoplosphere",
+			"activeEffectSourceItemUuid": ""
+		},
+		{
+			"id": "empyreuma",
+			"name": "Empyreuma",
+			"tooltip": "Empyreuma — fire",
+			"iconCode": "fa-droplet",
+			"disabled": false,
+			"description": "The fire register. Street counterpart: <em>the scorch</em> / <em>burnt batch</em>. From <em>empyreuma</em>, the burnt smell of organic matter spoiled by heat in a retort.",
+			"craftingSystemId": "rippers-hoplosphere",
+			"activeEffectSourceItemUuid": ""
+		},
+		{
+			"id": "susurrus",
+			"name": "Susurrus",
+			"tooltip": "Susurrus — air",
+			"iconCode": "fa-droplet",
+			"disabled": false,
+			"description": "The air register (wave-2 material). Street counterpart: <em>the whisper</em>. From <em>susurrus</em>, a sound heard on auscultation.",
+			"craftingSystemId": "rippers-hoplosphere",
+			"activeEffectSourceItemUuid": ""
+		},
+		{
+			"id": "residuum",
+			"name": "Residuum",
+			"tooltip": "Unrefinable aspect",
+			"iconCode": "fa-droplet",
+			"disabled": false,
+			"description": "Refuses to refine. Over-differentiated material the Lodge’s categories cannot resolve. Has no sphere and no conversion rate — never a reagent (brief §6).",
+			"craftingSystemId": "rippers-hoplosphere",
+			"activeEffectSourceItemUuid": ""
+		},
+		{
+			"id": "shard",
+			"name": "Shard",
+			"tooltip": "Any refined shard",
+			"iconCode": "fa-shard",
+			"disabled": false,
+			"description": "Shared tag carried by every aspect shard so a recipe can require \"any N shards\" regardless of aspect.",
+			"craftingSystemId": "rippers-hoplosphere",
+			"activeEffectSourceItemUuid": ""
+		}
+	],
+	"components": [
+		{
+			"id": "shard-algor",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSH000000000001",
+			"disabled": false,
+			"essences": {
+				"algor": 1,
+				"shard": 1
+			},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "shard-sordes",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSH000000000002",
+			"disabled": false,
+			"essences": {
+				"sordes": 1,
+				"shard": 1
+			},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "shard-inanition",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSH000000000003",
+			"disabled": false,
+			"essences": {
+				"inanition": 1,
+				"shard": 1
+			},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "shard-empyreuma",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSH000000000004",
+			"disabled": false,
+			"essences": {
+				"empyreuma": 1,
+				"shard": 1
+			},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "shard-susurrus",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSH000000000005",
+			"disabled": false,
+			"essences": {
+				"susurrus": 1,
+				"shard": 1
+			},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "shard-residuum",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSH000000000006",
+			"disabled": false,
+			"essences": {
+				"residuum": 1,
+				"shard": 1
+			},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "clot-algor",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHCL000000000007",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [
+				{
+					"id": "salvage-algor",
+					"name": "Render into Algor shards",
+					"results": {
+						"shard-algor": 2
+					},
+					"catalysts": {}
+				}
+			],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "clot-sordes",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHCL000000000008",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [
+				{
+					"id": "salvage-sordes",
+					"name": "Render into Sordes shards",
+					"results": {
+						"shard-sordes": 2
+					},
+					"catalysts": {}
+				}
+			],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "clot-inanition",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHCL000000000009",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [
+				{
+					"id": "salvage-inanition",
+					"name": "Render into Inanition shards",
+					"results": {
+						"shard-inanition": 2
+					},
+					"catalysts": {}
+				}
+			],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "clot-empyreuma",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHCL000000000010",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [
+				{
+					"id": "salvage-empyreuma",
+					"name": "Render into Empyreuma shards",
+					"results": {
+						"shard-empyreuma": 2
+					},
+					"catalysts": {}
+				}
+			],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "clot-susurrus",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHCL000000000011",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [
+				{
+					"id": "salvage-susurrus",
+					"name": "Render into Susurrus shards",
+					"results": {
+						"shard-susurrus": 2
+					},
+					"catalysts": {}
+				}
+			],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "clot-residuum",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHCL000000000012",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [
+				{
+					"id": "salvage-residuum",
+					"name": "Render into Residuum shards",
+					"results": {
+						"shard-residuum": 2
+					},
+					"catalysts": {}
+				}
+			],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "matrix-phial",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHMX000000000013",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "matrix-scrapglass",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHMX000000000014",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "matrix-quicklime",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHMX000000000015",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "matrix-silverleaf",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHMX000000000016",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "matrix-coldiron",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHMX000000000017",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "matrix-lead",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHMX000000000018",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "matrix-brass",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHMX000000000019",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "tool-bench",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHTL000000000020",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "tool-crucible",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHTL000000000021",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-arctic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000022",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-volcanic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000023",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-poisonous",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000024",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-dark",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000025",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-cyclonic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000026",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-scornful",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000027",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-toxic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000028",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-draining",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000029",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-ghastly",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000030",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-blessed",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000031",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-knightly",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000032",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-skeptical",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000033",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-disrupting",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000034",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-street-crude",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000035",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "sphere-street-sound",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSP000000000036",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "scrap-slag",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSL000000000037",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "remnant-generic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRM000000000038",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "remnant-hyde",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRM000000000039",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "remnant-melmoth",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRM000000000040",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "acc-antistatus",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHAC000000000041",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "acc-resistance",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHAC000000000042",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "acc-swordbreaker",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHAC000000000043",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "acc-immunity",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHAC000000000044",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "acc-weaponup",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHAC000000000045",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "acc-hyde",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHAC000000000046",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		},
+		{
+			"id": "acc-melmoth",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHAC000000000047",
+			"disabled": false,
+			"essences": {},
+			"salvageOptions": [],
+			"craftingSystemId": "rippers-hoplosphere"
+		}
+	],
+	"recipes": [
+		{
+			"id": "fixation-arctic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000048",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-phial": 1
+					},
+					"essences": {
+						"algor": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Arctic Sphere",
+					"results": {
+						"sphere-arctic": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "fixation-volcanic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000049",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-phial": 1
+					},
+					"essences": {
+						"empyreuma": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Volcanic Sphere",
+					"results": {
+						"sphere-volcanic": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "fixation-poisonous",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000050",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-phial": 1
+					},
+					"essences": {
+						"sordes": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Poisonous Sphere",
+					"results": {
+						"sphere-poisonous": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "fixation-dark",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000051",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-phial": 1
+					},
+					"essences": {
+						"inanition": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Dark Sphere",
+					"results": {
+						"sphere-dark": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "fixation-cyclonic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000052",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-phial": 1
+					},
+					"essences": {
+						"susurrus": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Cyclonic Sphere",
+					"results": {
+						"sphere-cyclonic": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "decoction-scornful",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000053",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-quicklime": 1
+					},
+					"essences": {
+						"empyreuma": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Scornful Sphere",
+					"results": {
+						"sphere-scornful": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "decoction-toxic",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000054",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-quicklime": 1
+					},
+					"essences": {
+						"sordes": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Toxic Sphere",
+					"results": {
+						"sphere-toxic": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "decoction-draining",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000055",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-quicklime": 1
+					},
+					"essences": {
+						"inanition": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Draining Sphere",
+					"results": {
+						"sphere-draining": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "decoction-ghastly",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000056",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-quicklime": 1
+					},
+					"essences": {
+						"susurrus": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Ghastly Sphere",
+					"results": {
+						"sphere-ghastly": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "investiture-blessed",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000057",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-silverleaf": 1
+					},
+					"essences": {
+						"shard": 2
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Blessed Sphere",
+					"results": {
+						"sphere-blessed": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "investiture-knightly",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000058",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-coldiron": 1
+					},
+					"essences": {
+						"shard": 2
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Knightly Sphere",
+					"results": {
+						"sphere-knightly": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "investiture-skeptical",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000059",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-lead": 1
+					},
+					"essences": {
+						"shard": 2
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Skeptical Sphere",
+					"results": {
+						"sphere-skeptical": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "investiture-disrupting",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000060",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"matrix-brass": 1
+					},
+					"essences": {
+						"shard": 2
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Disrupting Sphere",
+					"results": {
+						"sphere-disrupting": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "setting-antistatus",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000061",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"remnant-generic": 1,
+						"matrix-phial": 1
+					},
+					"essences": {
+						"shard": 2
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Antistatus Accessory",
+					"results": {
+						"acc-antistatus": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "setting-resistance",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000062",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"remnant-generic": 1,
+						"matrix-phial": 1
+					},
+					"essences": {
+						"shard": 2
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Resistance Accessory",
+					"results": {
+						"acc-resistance": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "setting-swordbreaker",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000063",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"remnant-generic": 1,
+						"matrix-phial": 1
+					},
+					"essences": {
+						"shard": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Swordbreaker Accessory",
+					"results": {
+						"acc-swordbreaker": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "setting-immunity",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000064",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"remnant-generic": 1,
+						"matrix-phial": 1
+					},
+					"essences": {
+						"shard": 5
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Immunity Accessory",
+					"results": {
+						"acc-immunity": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "setting-weaponup",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000065",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"remnant-generic": 1,
+						"matrix-phial": 1
+					},
+					"essences": {
+						"shard": 6
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Weapon Up Accessory",
+					"results": {
+						"acc-weaponup": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "setting-hyde",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000066",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"remnant-hyde": 1,
+						"matrix-phial": 1
+					},
+					"essences": {
+						"shard": 6
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "The Hyde",
+					"results": {
+						"acc-hyde": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "setting-melmoth",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000067",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-bench": 1
+					},
+					"ingredients": {
+						"remnant-melmoth": 1,
+						"matrix-phial": 1
+					},
+					"essences": {
+						"susurrus": 3
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "out",
+					"name": "Melmoth",
+					"results": {
+						"acc-melmoth": 1
+					}
+				}
+			]
+		},
+		{
+			"id": "the-scorch",
+			"itemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000068",
+			"disabled": false,
+			"craftingSystemId": "rippers-hoplosphere",
+			"requirementOptions": [
+				{
+					"id": "req",
+					"name": "Ingredients",
+					"catalysts": {
+						"tool-crucible": 1
+					},
+					"ingredients": {
+						"matrix-scrapglass": 1
+					},
+					"essences": {
+						"shard": 2
+					}
+				}
+			],
+			"resultOptions": [
+				{
+					"id": "ruined",
+					"name": "Ruined — slag",
+					"results": {
+						"scrap-slag": 1
+					}
+				},
+				{
+					"id": "crude",
+					"name": "Crude — uncombinable sphere",
+					"results": {
+						"sphere-street-crude": 1
+					}
+				},
+				{
+					"id": "sound",
+					"name": "Sound — coagulable sphere",
+					"results": {
+						"sphere-street-sound": 1
+					}
+				}
+			]
+		}
+	]
+}

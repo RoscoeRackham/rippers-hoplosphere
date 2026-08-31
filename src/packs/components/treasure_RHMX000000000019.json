@@ -1,0 +1,41 @@
+{
+	"folder": null,
+	"name": "Brass Swarf",
+	"type": "treasure",
+	"img": "icons/svg/chest.svg",
+	"system": {
+		"subtype": {
+			"value": "material"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>Matrix.</em> Bane matrix → Disrupting (constructs). Consumed on use.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "matrix-brass"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHMX000000000019",
+	"_key": "!items!RHMX000000000019"
+}

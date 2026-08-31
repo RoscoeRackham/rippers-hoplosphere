@@ -1,0 +1,41 @@
+{
+	"folder": null,
+	"name": "Harvested Remnant",
+	"type": "treasure",
+	"img": "icons/svg/mystery-man.svg",
+	"system": {
+		"subtype": {
+			"value": "material"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>Remnant (accessory seed).</em> The case-specific object a Quality is set from — GM-assigned per accessory; not always a body part. The remnant selects the Quality (brief §5.1). Best template: a remnant that isn’t a body part (§5.2).</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "remnant-generic"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHRM000000000038",
+	"_key": "!items!RHRM000000000038"
+}

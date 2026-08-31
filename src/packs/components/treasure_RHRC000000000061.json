@@ -1,0 +1,41 @@
+{
+	"folder": null,
+	"name": "Recipe: Setting — Antistatus",
+	"type": "treasure",
+	"img": "icons/svg/book.svg",
+	"system": {
+		"subtype": {
+			"value": "treasure"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>Fabricate recipe card.</em> Accessory setting. 1 remnant + 2 shards + an apothecary phial, on the Lodge bench. The remnant selects the Quality. Shard count per brief §5.2.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "card-setting-antistatus"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHRC000000000061",
+	"_key": "!items!RHRC000000000061"
+}

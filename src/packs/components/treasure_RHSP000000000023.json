@@ -1,0 +1,47 @@
+{
+	"folder": null,
+	"name": "Volcanic Sphere",
+	"type": "treasure",
+	"img": "icons/svg/aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": "500z"
+		},
+		"description": "<p><em>Hoplosphere — Volcanic Sphere.</em> Elemental. Damage/register: fire. Sample-list d66 65, Empyreuma aspect. Worth ~500z. Mechanical effect (Techno Fantasy Atlas): ⚠ owed.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 500
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "sphere-volcanic"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"sphere": true,
+			"aspect": "empyreuma",
+			"coagulable": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHSP000000000023",
+	"_key": "!items!RHSP000000000023"
+}

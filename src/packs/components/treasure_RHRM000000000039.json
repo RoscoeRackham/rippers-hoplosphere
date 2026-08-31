@@ -1,0 +1,41 @@
+{
+	"folder": null,
+	"name": "Hyde Sinew",
+	"type": "treasure",
+	"img": "icons/svg/mystery-man.svg",
+	"system": {
+		"subtype": {
+			"value": "material"
+		},
+		"summary": {
+			"value": ""
+		},
+		"description": "<p><em>Remnant (worked example).</em> Transformed sinew that does not relax after death. Sets Weapon Up (melee). The tutorial fight hands it over.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 0
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "remnant-hyde"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHRM000000000039",
+	"_key": "!items!RHRM000000000039"
+}

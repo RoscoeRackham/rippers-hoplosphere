@@ -1,0 +1,18 @@
+{
+	"name": "rippers-hoplosphere",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Rippers Unmasked — Hoplosphere Economy: a Fabricate crafting-system file + the component Item compendium it binds. Personal-table module.",
+	"scripts": {
+		"build": "node ./tools/build-hoplosphere.mjs",
+		"pack": "node ./tools/pack.mjs",
+		"unpack": "node ./tools/unpack.mjs",
+		"zip": "rm -f rippers-hoplosphere.zip && zip -r -q rippers-hoplosphere.zip module.json README.md packs system docs macros -x '*/.DS_Store'",
+		"release": "gh release create v$npm_package_version -R RoscoeRackham/rippers-hoplosphere --latest --title \"rippers-hoplosphere v$npm_package_version\" --notes \"rippers-hoplosphere v$npm_package_version\" ./module.json ./rippers-hoplosphere.zip",
+		"publish": "npm run build && npm run pack && npm run zip && npm run release"
+	},
+	"devDependencies": {
+		"@foundryvtt/foundryvtt-cli": "3.0.0"
+	}
+}
