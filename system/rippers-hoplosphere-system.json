@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 4,
 	"fabricateVersion": "1.9.2",
-	"exportedAt": "2026-08-31T23:48:59.406Z",
+	"exportedAt": "2026-09-01T01:03:58.861Z",
 	"runtimeStateIncluded": false,
 	"system": {
 		"id": "rippers-hoplosphere",
@@ -777,15 +777,40 @@
 				}
 			},
 			"routed": {
-				"type": "relative",
+				"type": "fixed",
 				"rollFormula": "",
-				"dc": 15,
+				"dc": 10,
 				"thresholdMode": "meet",
 				"dcMode": "static",
 				"macroUuid": null,
 				"tiers": [],
 				"relativeOutcomes": [],
-				"fixedOutcomes": [],
+				"fixedOutcomes": [
+					{
+						"id": "ruined",
+						"name": "Ruined",
+						"success": false,
+						"breakTools": false,
+						"start": 0,
+						"end": 9
+					},
+					{
+						"id": "crude",
+						"name": "Crude",
+						"success": true,
+						"breakTools": false,
+						"start": 10,
+						"end": 14
+					},
+					{
+						"id": "sound",
+						"name": "Sound",
+						"success": true,
+						"breakTools": false,
+						"start": 15,
+						"end": 99
+					}
+				],
 				"checkBreakage": {
 					"triggers": []
 				}
@@ -3082,7 +3107,11 @@
 			"resultSelection": {
 				"provider": "check"
 			},
-			"outcomeRouting": null,
+			"outcomeRouting": {
+				"ruined": "ruined",
+				"crude": "crude",
+				"sound": "sound"
+			},
 			"checkTierId": null
 		}
 	],

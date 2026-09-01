@@ -411,7 +411,11 @@ for (const r of recipes) {
 		id: r.id, name: r.id, enabled: true,
 		ingredientSets, resultGroups, toolIds, catalysts: [], dcOverride,
 		resultSelection: routed ? { provider: 'check' } : null, // SCORCH: routedByCheck (Ruined/Crude/Sound)
-		outcomeRouting: null, checkTierId: null,
+		// outcomeRouting maps each check outcome id → a resultGroup id (schema-4 routing, verified from the
+		// 1.9.2 bundle: r = outcomeRouting||{}; i = r[outcomeId]; resultGroups.filter(g => g.id === i)).
+		// Our 3 SCORCH result groups already have ids ruined/crude/sound, matching SCORCH_OUTCOMES below.
+		outcomeRouting: routed ? Object.fromEntries(resultGroups.map((g) => [g.id, g.id])) : null,
+		checkTierId: null,
 	});
 
 	// the learnable holder item that grants this recipe
@@ -429,14 +433,26 @@ for (const r of recipes) {
 
 // the three system-level checks (shape locked from the empty-system export)
 const checkCommon = () => ({ rollFormula: '', dc: 10, thresholdMode: 'meet', dcMode: 'static', tiers: [], macroUuid: null, checkBreakage: { triggers: [] } });
+// THE SCORCH routed outcomes (fixed roll-value bands). Each { id, name, success, breakTools, start, end };
+// recipe.outcomeRouting binds these ids to the 3 SCORCH result groups (ruined/crude/sound). Ingredients are
+// consumed on a Ruined result (its Slag group IS the consumed outcome). Bands are tunable (brief §8 balance-watch).
+const SCORCH_OUTCOMES = [
+	{ id: 'ruined', name: 'Ruined', success: false, breakTools: false, start: 0, end: 9 },
+	{ id: 'crude', name: 'Crude', success: true, breakTools: false, start: 10, end: 14 },
+	{ id: 'sound', name: 'Sound', success: true, breakTools: false, start: 15, end: 99 },
+];
 const craftingCheck = {
 	enabled: true, mode: 'passFail',
 	consumption: { consumeIngredientsOnFail: false, breakToolsOnFail: false }, // FIXATION/DECOCTION/etc. return on failure
 	failureResultPolicy: 'perRecord',
 	simple: checkCommon(), // default DC 10; DECOCTION overrides to 13 via recipe.dcOverride
-	routed: { type: 'relative', rollFormula: '', dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
-	// ↑ SCORCH routed check. macroUuid: null — after import, the GM makes a Macro from macros/scorch-check.js and
-	//   sets routed.macroUuid to it (Ruined/Crude/Sound tier bands; TODO(V3): populate tiers/outcomes from a live routed export).
+	routed: {
+		type: 'fixed', rollFormula: '', dc: 10, thresholdMode: 'meet', dcMode: 'static', macroUuid: null,
+		tiers: [], relativeOutcomes: [], fixedOutcomes: SCORCH_OUTCOMES, checkBreakage: { triggers: [] },
+	},
+	// ↑ SCORCH routed check (the-scorch: resultSelection {provider:'check'} + outcomeRouting maps these outcome
+	//   ids to its 3 result groups). macroUuid: null — after import the GM makes a Macro from macros/scorch-check.js
+	//   and sets routed.macroUuid to it (§9#5: FU crit can't be a native trigger, so the macro decides the tier).
 	progressive: { awardMode: 'equal', rollFormula: '', checkBreakage: { triggers: [] } },
 	outcomes: ['fail', 'pass'], defaultModifierPolicy: 'addAll', defaultModifierIds: [],
 };
@@ -528,6 +544,15 @@ async function main() {
 		if (r.ingredientSets.length < 1) problems.push(`recipe ${r.id}: no ingredient set`);
 		if (r.resultGroups.length < 1) problems.push(`recipe ${r.id}: no result group`);
 		if (!r.resultSelection && r.resultGroups.length !== 1) problems.push(`recipe ${r.id}: simple mode needs exactly 1 result group (has ${r.resultGroups.length})`);
+		if (r.resultSelection?.provider === 'check') {
+			const groupIds = new Set(r.resultGroups.map((g) => g.id));
+			const outcomeIds = new Set(exportModel.system.craftingCheck.routed.fixedOutcomes.map((o) => o.id));
+			if (!r.outcomeRouting || Object.keys(r.outcomeRouting).length === 0) problems.push(`recipe ${r.id}: routed by check but no outcomeRouting`);
+			for (const [outcomeId, gid] of Object.entries(r.outcomeRouting || {})) {
+				if (!outcomeIds.has(outcomeId)) problems.push(`recipe ${r.id}: outcomeRouting key ${outcomeId} not a routed outcome`);
+				if (!groupIds.has(gid)) problems.push(`recipe ${r.id}: outcomeRouting → ${gid} not a result group`);
+			}
+		}
 		for (const s of r.ingredientSets) {
 			for (const k of Object.keys(s.essences)) if (!essIds.has(k)) problems.push(`recipe ${r.id}: essence ${k} not defined`);
 			for (const g of s.ingredientGroups) for (const o of g.options) if (o.match.type === 'component' && !compIds.has(o.match.componentId)) problems.push(`recipe ${r.id}: ingredient ${o.match.componentId} not a component`);

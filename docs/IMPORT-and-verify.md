@@ -14,26 +14,31 @@ The system file is authored to **schemaVersion 4** — the installed build's rea
 
 ## 1. Confirm the API surface
 
+**Namespace note (verified live):** `importSystemFromFile`, `exportSystem`, `importFromPack` and
+`getCompendiumImporter` are on **`game.fabricate` directly** — NOT `game.fabricate.api`. `game.fabricate.api`
+holds the classes plus `getRecipeManager` / `getCraftingSystemManager` / `craftRecipe`.
+
 ```js
-const api = game.fabricate.api;
-console.log(typeof api.importSystemFromFile); // "function"
+console.log(typeof game.fabricate.importSystemFromFile); // "function"
 ```
 
 ## 2. Import the crafting system from the file
 
 The file ships at `modules/rippers-hoplosphere/system/rippers-hoplosphere-system.json` (`schemaVersion: 4`).
+The live build's `importSystemFromFile` takes a **File** (the raw-object overload threw). Build a File from
+the fetched text:
 
 ```js
-const model = await fetch('modules/rippers-hoplosphere/system/rippers-hoplosphere-system.json').then(r => r.json());
-console.log(model.schemaVersion, model.fabricateVersion); // 4 "1.9.2"
-await game.fabricate.api.importSystemFromFile(model);
-// (if importSystemFromFile opens a picker instead of taking an object, pick the file above)
+const text = await fetch('modules/rippers-hoplosphere/system/rippers-hoplosphere-system.json').then(r => r.text());
+console.log(JSON.parse(text).schemaVersion, JSON.parse(text).fabricateVersion); // 4 "1.9.2"
+const file = new File([text], 'rippers-hoplosphere-system.json', { type: 'application/json' });
+await game.fabricate.importSystemFromFile(file);
 ```
 
 Confirm it landed and the counts match:
 
 ```js
-const exported = await game.fabricate.api.exportSystem('rippers-hoplosphere');
+const exported = await game.fabricate.exportSystem('rippers-hoplosphere');
 console.log(
   'schema', exported.schemaVersion,
   '| essences', exported.system.essenceDefinitions.length,   // 7
@@ -46,15 +51,17 @@ console.log(
 
 ## 3. Round-trip diff (catches any field the installed build re-normalizes)
 
-`importSystemFromFile` then `exportSystem` should preserve structure. If the re-exported system **drops or
-renames** a field this file set — especially inside a **recipe** (`ingredientSets` / `resultGroups` /
-`toolIds` / `dcOverride` / `resultSelection`), a **tool**, or `craftingCheck` — capture that JSON and send it
-to Artificer. Two spots are known best-effort and worth eyeballing:
+`importSystemFromFile` then `exportSystem` should preserve structure — **all 21 recipes**, including
+`the-scorch`, should survive (v0.1.1 dropped the-scorch because its routed check had no outcomes; v0.1.2
+populates them). If the re-exported system still **drops or renames** a field this file set — especially
+inside a **recipe** (`ingredientSets` / `resultGroups` / `toolIds` / `dcOverride` / `resultSelection` /
+`outcomeRouting`), a **tool**, or `craftingCheck.routed` — capture that JSON and send it to Artificer.
 
-- **THE SCORCH routing** — `recipes[id="the-scorch"].resultSelection = {provider:"check"}` with 3 result
-  groups (`ruined`/`crude`/`sound`). If the build expects the tier→group binding expressed differently
-  (e.g. `craftingCheck.routed.fixedOutcomes[]` referencing group ids, or a `checkTierId` per group),
-  the re-export shows the canonical shape — send it back for a one-line fix.
+- **THE SCORCH routing (fixed in v0.1.2)** — `recipes[id="the-scorch"]` sets `resultSelection={provider:"check"}`
+  and `outcomeRouting={ruined:"ruined",crude:"crude",sound:"sound"}`, mapping the 3 outcome bands in
+  `system.craftingCheck.routed.fixedOutcomes` (`ruined` 0–9 fail / `crude` 10–14 pass / `sound` 15–99 pass) to
+  its 3 result groups. Confirm `the-scorch` is present in the re-export and `craftingCheck.routed.fixedOutcomes`
+  is non-empty.
 - **RENDERING progressive yield** — `salvageCraftingCheck.progressive.rollFormula = "1d2"` is the tunable
   start (brief §5.1). Confirm salvage still yields with `salvageCraftingCheck.enabled:false`.
 

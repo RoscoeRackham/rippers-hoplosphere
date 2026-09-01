@@ -48,14 +48,15 @@ FIXATION (10) and DECOCTION (13) coexist in **one** crafting system via per-reci
 `toolIds:["tool-bench"]` + a bane matrix ingredient + `essences:{shard:2}` → creature-type sphere. The matrix
 selects the output (silver→Blessed, cold iron→Knightly, lead→Skeptical, brass→Disrupting).
 
-### 5. THE SCORCH — street (routed)
+### 5. THE SCORCH — street (routed by check)
 `toolIds:["tool-crucible"]` + `matrix-scrapglass` + `essences:{shard:2}`, **`resultSelection:{provider:"check"}`**
 with **three** result groups: `ruined`→Slag, `crude`→Crude Sphere (uncombinable flag), `sound`→Sound Sphere.
-The tier is decided by the FU check via `system.craftingCheck.routed` + a macro: after import the GM makes a
-Macro from `macros/scorch-check.js` and sets `craftingCheck.routed.macroUuid` to it. **Best-effort:** the exact
-tier→group binding (`routed.fixedOutcomes`/`checkTierId`) is left for the live round-trip to confirm — the
-re-export shows the canonical shape if a tweak is needed. FU crit-as-trigger is still limited (§9 #5), which is
-exactly why the macro decides the tier.
+The routing (fixed in v0.1.2, from the 1.9.2 bundle) is: `system.craftingCheck.routed.fixedOutcomes` defines
+three roll-value bands — `ruined` 0–9 (fail), `crude` 10–14 (pass), `sound` 15–99 (pass) — and
+`recipe.outcomeRouting = {ruined:"ruined",crude:"crude",sound:"sound"}` maps each outcome id to a result group
+(verified read path: `resultGroups.filter(g => g.id === outcomeRouting[outcomeId])`). Bands are tunable (brief §8).
+After import the GM makes a Macro from `macros/scorch-check.js` and sets `craftingCheck.routed.macroUuid` to it —
+FU crit-as-trigger is still limited (§9 #5), so the macro can override to Sound on a crit / Ruined on a fumble.
 
 ### 6. SETTING — accessories (×7)
 `toolIds:["tool-bench"]` + a remnant + `matrix-phial` + `essences:{shard:N}` (§5.2 counts 2/2/3/5/6) → the
@@ -80,13 +81,13 @@ no conversion rate. `system.alchemy` exists (null) — Residuum→Alchemy is tec
 1. **Not self-contained.** Every component/tool/recipe-card references a real Foundry item UUID
    (`originItemUuid` + `registeredItemUuid`); every recipe output/ingredient references a component id.
    Handled by minting the whole `components` compendium.
-2. **FU crit as a native trigger** (§9 #5) — still no. The Scorch tier is macro-decided.
+2. **FU crit as a native trigger** (§9 #5) — still no. The Scorch tier bands are by roll value; the macro
+   overrides for the crit/fumble cases.
 3. **Susurrus GATHERING environment** — `features.gathering:false`, `gatheringEnvironments:[]`. The
-   environment element shape was **not** captured (the live export of an empty system doesn't reveal it and a
-   populated-gathering export wasn't available). Susurrus material still flows through the shard components;
-   authoring the pub/press/crowd environment waits on a populated-gathering export → a follow-up (v0.1.2).
-4. **The Scorch tier→group binding** is best-effort (see recipe 5) — one live round-trip confirms it.
-5. **Coagulation** is not a Fabricate feature. "Crude never coagulates" is a flag on the sphere Item
+   environment/task element shape was **not** captured (the empty-system export doesn't reveal it). Susurrus
+   material still flows through the shard components; authoring the pub/press/crowd environment waits on a
+   populated-gathering export → a later follow-up.
+4. **Coagulation** is not a Fabricate feature. "Crude never coagulates" is a flag on the sphere Item
    (`flags.rippers-hoplosphere.coagulable`, crude=false); enforcement automation is a separate follow-up card.
 
 ## §7 OPEN items — STUBBED + FLAGGED, never decided
