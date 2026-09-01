@@ -30,9 +30,10 @@ npm run unpack  # reverse: packs → src (round-trip a Foundry-edited pack)
 Built source-faithfully from `Look Here Claude/hoplosphere-economy-brief.md`. **No rules value is
 invented** — where Techno Fantasy Atlas sphere/accessory mechanics would go, a `⚠ owed` marker sits.
 Authored to the installed build's real **schemaVersion 4** envelope; per-recipe DC (`dcOverride`),
-progressive salvage, routed Scorch tiers and tool breakage are all native. One piece is deferred: the
-**Susurrus gathering environment** (`features.gathering` off) — its element shape needs a live
-populated-gathering export; Susurrus material still flows through the shard components. The
+progressive salvage and tool breakage are all native. Two pieces are deferred (the installed 1.9.2
+normalizer rejects offline-derived shapes, so both need a live UI-built export): **The Scorch's 3-tier
+routing** — it ships **simple** (single Crude/uncombinable output) for now; and the **Susurrus gathering
+environment** (`features.gathering` off) — Susurrus material still flows through the shard components. The
 emotion/denial aspect register is **GM-side only** and appears in no player-facing string here (brief §3.4).
 
 No Project FU or Fabricate content is redistributed. Not for redistribution.

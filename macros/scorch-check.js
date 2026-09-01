@@ -1,4 +1,10 @@
 /*
+ * ⚠ DEFERRED — this macro is for the FUTURE 3-tier routed SCORCH (Ruined/Crude/Sound), which is NOT in the
+ * shipped build: THE SCORCH currently ships SIMPLE (a single Crude output), because the installed 1.9.2
+ * normalizer rejects an offline-derived routed check. Kept here for the routed version once its canonical
+ * shape is captured from a UI-built check (card ROUTED-scorch-tiers-future). It does nothing useful against
+ * the simple recipe (there are no ruined/crude/sound result options to route to).
+ *
  * THE SCORCH — external-roll crafting macro (Rippers Unmasked hoplosphere economy)
  * ------------------------------------------------------------------------------
  * WHY THIS EXISTS (brief §9 #5, §9.1): a Fabula Ultima critical success is a matching pair ≥ 6.

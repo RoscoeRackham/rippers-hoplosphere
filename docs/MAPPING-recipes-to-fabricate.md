@@ -48,15 +48,25 @@ FIXATION (10) and DECOCTION (13) coexist in **one** crafting system via per-reci
 `toolIds:["tool-bench"]` + a bane matrix ingredient + `essences:{shard:2}` → creature-type sphere. The matrix
 selects the output (silver→Blessed, cold iron→Knightly, lead→Skeptical, brass→Disrupting).
 
-### 5. THE SCORCH — street (routed by check)
-`toolIds:["tool-crucible"]` + `matrix-scrapglass` + `essences:{shard:2}`, **`resultSelection:{provider:"check"}`**
-with **three** result groups: `ruined`→Slag, `crude`→Crude Sphere (uncombinable flag), `sound`→Sound Sphere.
-The routing (fixed in v0.1.2, from the 1.9.2 bundle) is: `system.craftingCheck.routed.fixedOutcomes` defines
-three roll-value bands — `ruined` 0–9 (fail), `crude` 10–14 (pass), `sound` 15–99 (pass) — and
-`recipe.outcomeRouting = {ruined:"ruined",crude:"crude",sound:"sound"}` maps each outcome id to a result group
-(verified read path: `resultGroups.filter(g => g.id === outcomeRouting[outcomeId])`). Bands are tunable (brief §8).
-After import the GM makes a Macro from `macros/scorch-check.js` and sets `craftingCheck.routed.macroUuid` to it —
-FU crit-as-trigger is still limited (§9 #5), so the macro can override to Sound on a crit / Ruined on a fumble.
+### 5. THE SCORCH — street (SIMPLE; routed tiers deferred)
+Ships **simple** (Austin's call): `toolIds:["tool-crucible"]` + `matrix-scrapglass` + `essences:{shard:2}` →
+one result group, the **Crude Sphere** (`sphere-street-crude`, uncombinable flag). No `resultSelection` /
+`outcomeRouting`; `craftingCheck.routed` stays at the empty default.
+
+Why simple, not routed: the installed 1.9.2 normalizer (`_normalizeRoutedCraftingCheck`) **rejects any
+offline-derived routed shape wholesale** — on import the check mode snaps back to `passFail` and
+`routed.fixedOutcomes` strips to 0, so a `routedByCheck` recipe has nothing to route to and is silently
+dropped (proven live: v0.1.1 and the derived-routed v0.1.2 both dropped the-scorch, 20/21). Offline
+self-consistency can't catch this — only the live normalizer does.
+
+Why **Crude** (not Sound) as the single output: it preserves the register split — street work reliably yields
+an *uncombinable* sphere (cheaper, powerful, but caps the owner at one per effect), whereas a guaranteed Sound
+would be strictly better than bench work and break the class thesis.
+
+The full 3-tier **Ruined / Crude / Sound** routing is deferred (card `ROUTED-scorch-tiers-future`): it needs
+the **canonical** routed-check shape captured from a **UI-built** routed check exported live (derived/source
+shapes are rejected). `sphere-street-sound` and `scrap-slag` stay minted in the compendium for that future
+version; `macros/scorch-check.js` also stays shipped for it.
 
 ### 6. SETTING — accessories (×7)
 `toolIds:["tool-bench"]` + a remnant + `matrix-phial` + `essences:{shard:N}` (§5.2 counts 2/2/3/5/6) → the

@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Fabricate recipe card.</em> Street work. 2 shards of ANY aspect + scrap glass, in the street crucible. Routed by check into Ruined / Crude / Sound — pick the result option matching an EXTERNAL FU check (macro-driven; TODO(V3): native check tier bands, §9#5). Ingredients consumed on failure. A Crude sphere can never coagulate.</p>",
+		"description": "<p><em>Fabricate recipe card.</em> Street work. 2 shards of ANY aspect + scrap glass, in the street crucible. Reliably yields a Crude sphere — idiosyncratic, powerful, and it can never coagulate (caps the owner at one per effect). The 3-tier Ruined/Crude/Sound version is deferred.</p>",
 		"showTitleCard": {
 			"value": false
 		},

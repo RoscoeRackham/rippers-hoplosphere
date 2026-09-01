@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 4,
 	"fabricateVersion": "1.9.2",
-	"exportedAt": "2026-09-01T01:03:58.861Z",
+	"exportedAt": "2026-09-01T01:17:05.894Z",
 	"runtimeStateIncluded": false,
 	"system": {
 		"id": "rippers-hoplosphere",
@@ -727,7 +727,7 @@
 			{
 				"id": "card-the-scorch",
 				"name": "Recipe: The Scorch",
-				"description": "<p><em>Fabricate recipe card.</em> Street work. 2 shards of ANY aspect + scrap glass, in the street crucible. Routed by check into Ruined / Crude / Sound — pick the result option matching an EXTERNAL FU check (macro-driven; TODO(V3): native check tier bands, §9#5). Ingredients consumed on failure. A Crude sphere can never coagulate.</p>",
+				"description": "<p><em>Fabricate recipe card.</em> Street work. 2 shards of ANY aspect + scrap glass, in the street crucible. Reliably yields a Crude sphere — idiosyncratic, powerful, and it can never coagulate (caps the owner at one per effect). The 3-tier Ruined/Crude/Sound version is deferred.</p>",
 				"img": "icons/svg/book.svg",
 				"originItemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000068",
 				"registeredItemUuid": "Compendium.rippers-hoplosphere.components.Item.RHRC000000000068",
@@ -777,40 +777,15 @@
 				}
 			},
 			"routed": {
-				"type": "fixed",
+				"type": "relative",
 				"rollFormula": "",
-				"dc": 10,
+				"dc": 15,
 				"thresholdMode": "meet",
 				"dcMode": "static",
 				"macroUuid": null,
 				"tiers": [],
 				"relativeOutcomes": [],
-				"fixedOutcomes": [
-					{
-						"id": "ruined",
-						"name": "Ruined",
-						"success": false,
-						"breakTools": false,
-						"start": 0,
-						"end": 9
-					},
-					{
-						"id": "crude",
-						"name": "Crude",
-						"success": true,
-						"breakTools": false,
-						"start": 10,
-						"end": 14
-					},
-					{
-						"id": "sound",
-						"name": "Sound",
-						"success": true,
-						"breakTools": false,
-						"start": 15,
-						"end": 99
-					}
-				],
+				"fixedOutcomes": [],
 				"checkBreakage": {
 					"triggers": []
 				}
@@ -3069,31 +3044,11 @@
 			],
 			"resultGroups": [
 				{
-					"id": "ruined",
-					"name": "Ruined — slag",
-					"results": [
-						{
-							"componentId": "scrap-slag",
-							"quantity": 1
-						}
-					]
-				},
-				{
 					"id": "crude",
 					"name": "Crude — uncombinable sphere",
 					"results": [
 						{
 							"componentId": "sphere-street-crude",
-							"quantity": 1
-						}
-					]
-				},
-				{
-					"id": "sound",
-					"name": "Sound — coagulable sphere",
-					"results": [
-						{
-							"componentId": "sphere-street-sound",
 							"quantity": 1
 						}
 					]
@@ -3104,14 +3059,8 @@
 			],
 			"catalysts": [],
 			"dcOverride": null,
-			"resultSelection": {
-				"provider": "check"
-			},
-			"outcomeRouting": {
-				"ruined": "ruined",
-				"crude": "crude",
-				"sound": "sound"
-			},
+			"resultSelection": null,
+			"outcomeRouting": null,
 			"checkTierId": null
 		}
 	],

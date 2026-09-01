@@ -323,19 +323,19 @@ addRecipe({
 	results: res({ name: 'Melmoth', results: { 'acc-melmoth': 1 } }),
 });
 
-// THE SCORCH — street (STUB). 2 shards of any aspect + scrap glass, in the breakable crucible.
-// Routed by CHECK into Ruined / Crude / Sound (brief §5). §9#5: FU crits can't be dice-group triggers,
-// so the tier is decided by an EXTERNAL roll then craftRecipe(resultOptionId) — see the shipped macro.
-// V2 approximation: three independent resultOptions. Ingredients consumed on failure.
+// THE SCORCH — street. 2 shards of any aspect + scrap glass, in the breakable crucible.
+// SHIPPED SIMPLE (single crude output): the installed 1.9.2 normalizer (_normalizeRoutedCraftingCheck)
+// rejects any derived routed shape wholesale (mode snaps to passFail, fixedOutcomes strip to 0), so a
+// routedByCheck recipe is silently dropped on import. Austin's call: ship the reliable CRUDE yield now,
+// defer the 3-tier Ruined/Crude/Sound routing (card ROUTED-scorch-tiers-future) until the canonical routed
+// shape is captured from a UI-BUILT check exported live. Crude (not Sound) preserves the register split:
+// street work reliably yields an uncombinable sphere — cheaper and powerful, but caps you at one per effect.
+// (sphere-street-sound + scrap-slag stay minted in the compendium for the future routed version.)
 addRecipe({
 	slug: 'the-scorch', name: 'The Scorch',
-	cardNote: 'Street work. 2 shards of ANY aspect + scrap glass, in the street crucible. Routed by check into Ruined / Crude / Sound — pick the result option matching an EXTERNAL FU check (macro-driven; TODO(V3): native check tier bands, §9#5). Ingredients consumed on failure. A Crude sphere can never coagulate.',
+	cardNote: 'Street work. 2 shards of ANY aspect + scrap glass, in the street crucible. Reliably yields a Crude sphere — idiosyncratic, powerful, and it can never coagulate (caps the owner at one per effect). The 3-tier Ruined/Crude/Sound version is deferred.',
 	requirement: req({ catalysts: { 'tool-crucible': 1 }, ingredients: { 'matrix-scrapglass': 1 }, essences: { shard: 2 } }),
-	results: [
-		res({ id: 'ruined', name: 'Ruined — slag', results: { 'scrap-slag': 1 } }),
-		res({ id: 'crude', name: 'Crude — uncombinable sphere', results: { 'sphere-street-crude': 1 } }),
-		res({ id: 'sound', name: 'Sound — coagulable sphere', results: { 'sphere-street-sound': 1 } }),
-	],
+	results: res({ id: 'crude', name: 'Crude — uncombinable sphere', results: { 'sphere-street-crude': 1 } }),
 });
 
 // ---- 4. TRANSFORM V2-shaped intermediates → schemaVersion 4 (Fabricate 1.9.2) --------------------
@@ -404,16 +404,16 @@ for (const r of recipes) {
 	}));
 	const ingredientSets = [{ id: `${r.id}-set`, essences: rq.essences, ingredientGroups }];
 	const resultGroups = r.resultOptions.map((o) => ({ id: o.id, name: o.name, results: asResults(o.results) }));
-	const routed = r.id === 'the-scorch';
+	// No recipe is routed in this build (SCORCH ships simple — see its definition). The routed-by-check
+	// path (resultSelection {provider:'check'} + outcomeRouting map) is deferred until the canonical routed
+	// shape is captured from a UI-built check; the installed normalizer rejects any derived routed shape.
+	const routed = false;
 	const dcOverride = r.id.startsWith('decoction-') ? DECOCTION_DC : null;
 
 	sysRecipes.push({
 		id: r.id, name: r.id, enabled: true,
 		ingredientSets, resultGroups, toolIds, catalysts: [], dcOverride,
-		resultSelection: routed ? { provider: 'check' } : null, // SCORCH: routedByCheck (Ruined/Crude/Sound)
-		// outcomeRouting maps each check outcome id → a resultGroup id (schema-4 routing, verified from the
-		// 1.9.2 bundle: r = outcomeRouting||{}; i = r[outcomeId]; resultGroups.filter(g => g.id === i)).
-		// Our 3 SCORCH result groups already have ids ruined/crude/sound, matching SCORCH_OUTCOMES below.
+		resultSelection: routed ? { provider: 'check' } : null,
 		outcomeRouting: routed ? Object.fromEntries(resultGroups.map((g) => [g.id, g.id])) : null,
 		checkTierId: null,
 	});
@@ -433,26 +433,15 @@ for (const r of recipes) {
 
 // the three system-level checks (shape locked from the empty-system export)
 const checkCommon = () => ({ rollFormula: '', dc: 10, thresholdMode: 'meet', dcMode: 'static', tiers: [], macroUuid: null, checkBreakage: { triggers: [] } });
-// THE SCORCH routed outcomes (fixed roll-value bands). Each { id, name, success, breakTools, start, end };
-// recipe.outcomeRouting binds these ids to the 3 SCORCH result groups (ruined/crude/sound). Ingredients are
-// consumed on a Ruined result (its Slag group IS the consumed outcome). Bands are tunable (brief §8 balance-watch).
-const SCORCH_OUTCOMES = [
-	{ id: 'ruined', name: 'Ruined', success: false, breakTools: false, start: 0, end: 9 },
-	{ id: 'crude', name: 'Crude', success: true, breakTools: false, start: 10, end: 14 },
-	{ id: 'sound', name: 'Sound', success: true, breakTools: false, start: 15, end: 99 },
-];
 const craftingCheck = {
 	enabled: true, mode: 'passFail',
 	consumption: { consumeIngredientsOnFail: false, breakToolsOnFail: false }, // FIXATION/DECOCTION/etc. return on failure
 	failureResultPolicy: 'perRecord',
 	simple: checkCommon(), // default DC 10; DECOCTION overrides to 13 via recipe.dcOverride
-	routed: {
-		type: 'fixed', rollFormula: '', dc: 10, thresholdMode: 'meet', dcMode: 'static', macroUuid: null,
-		tiers: [], relativeOutcomes: [], fixedOutcomes: SCORCH_OUTCOMES, checkBreakage: { triggers: [] },
-	},
-	// ↑ SCORCH routed check (the-scorch: resultSelection {provider:'check'} + outcomeRouting maps these outcome
-	//   ids to its 3 result groups). macroUuid: null — after import the GM makes a Macro from macros/scorch-check.js
-	//   and sets routed.macroUuid to it (§9#5: FU crit can't be a native trigger, so the macro decides the tier).
+	// routed left at the empty default — nothing uses it (SCORCH ships simple). The 3-tier routed check is
+	// deferred: the installed 1.9.2 normalizer rejects any offline-derived routed shape, so its canonical form
+	// must be captured from a UI-built check exported live (card ROUTED-scorch-tiers-future).
+	routed: { type: 'relative', rollFormula: '', dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
 	progressive: { awardMode: 'equal', rollFormula: '', checkBreakage: { triggers: [] } },
 	outcomes: ['fail', 'pass'], defaultModifierPolicy: 'addAll', defaultModifierIds: [],
 };
