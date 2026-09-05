@@ -201,6 +201,21 @@ addSphere({ slug: 'sphere-street-crude', name: 'Crude Sphere', aspect: null, dmg
 	note: 'Street work. Idiosyncratic — no two alike — so it can <strong>never coagulate</strong> (flag carried; enforcement deferred to a follow-up card). TODO(V3): bind to the SCORCH check "Crude" band.' });
 addSphere({ slug: 'sphere-street-sound', name: 'Sound Sphere', aspect: null, dmg: 'street', d66: '—', coagulable: true,
 	note: 'Street work at its best — a sound sphere, coagulable. TODO(V3): bind to the SCORCH check "Sound" band.' });
+// ---- 2f. HOMEBREW NAMED SPHERE — Nightglass (the Hyde's Tuesday drop) -----------------------------
+// Austin's OWN homebrew drop for the Hyde encounter — NOT a printed TFA sphere, so the ⚠-owed rule
+// (which protects unreproducible TFA text) does not apply: the effect is his to define and is stated
+// plainly below (god ruling, 2026-09-05). Authored via addComponent (not addSphere) precisely so its
+// description carries the STATED homebrew effect instead of the addSphere '⚠ owed TFA' boilerplate,
+// while keeping the identical sphere flags{sphere,aspect,coagulable}. Effect is applied MANUALLY by the
+// GM/player for now; an auto-applying ActiveEffect is a post-Tuesday follow-up (no effect-engine work
+// this week, per god). "Clot" is the campaign-facing name for a sphere.
+addComponent({
+	slug: 'sphere-nightglass', prefix: 'RHSP', name: 'Nightglass', subtype: 'artifact', costZ: 500,
+	desc: p(`<em>Hoplosphere (Clot) — Nightglass.</em> Distilled from the Hyde's tainted serum: a shard of night-glass that turns the beast's own darkness aside. <strong>While seated in an armor socket: gain Resistance to dark.</strong> Register: dark, ${ASPECT_NAME.inanition} aspect. Worth ~500z. <em>Homebrew — this campaign only (Austin, for the Hyde encounter); NOT a Techno Fantasy Atlas owed sphere.</em> The Resist-dark effect is applied manually by the GM/player; auto-applying ActiveEffect wiring is a post-Tuesday follow-up.`),
+	flags: { sphere: true, aspect: 'inanition', coagulable: true, homebrew: true },
+	img: 'icons/svg/aura.svg',
+});
+
 // scrap yield from a Ruined Scorch
 addComponent({ slug: 'scrap-slag', prefix: 'RHSL', name: 'Slag', subtype: 'material',
 	desc: p('<em>Ruined street work.</em> What a failed Scorch leaves. Ingredients are consumed on failure.'), img: 'icons/svg/waste.svg' });

@@ -1,0 +1,48 @@
+{
+	"folder": null,
+	"name": "Nightglass",
+	"type": "treasure",
+	"img": "icons/svg/aura.svg",
+	"system": {
+		"subtype": {
+			"value": "artifact"
+		},
+		"summary": {
+			"value": "500z"
+		},
+		"description": "<p><em>Hoplosphere (Clot) — Nightglass.</em> Distilled from the Hyde's tainted serum: a shard of night-glass that turns the beast's own darkness aside. <strong>While seated in an armor socket: gain Resistance to dark.</strong> Register: dark, Inanition aspect. Worth ~500z. <em>Homebrew — this campaign only (Austin, for the Hyde encounter); NOT a Techno Fantasy Atlas owed sphere.</em> The Resist-dark effect is applied manually by the GM/player; auto-applying ActiveEffect wiring is a post-Tuesday follow-up.</p>",
+		"showTitleCard": {
+			"value": false
+		},
+		"cost": {
+			"value": 500
+		},
+		"quantity": {
+			"value": 1
+		},
+		"origin": {
+			"value": ""
+		},
+		"source": "Rippers Unmasked — Hoplosphere Economy",
+		"fuid": "sphere-nightglass"
+	},
+	"effects": [],
+	"ownership": {
+		"default": 0
+	},
+	"flags": {
+		"rippers-hoplosphere": {
+			"sphere": true,
+			"aspect": "inanition",
+			"coagulable": true,
+			"homebrew": true
+		}
+	},
+	"_stats": {
+		"systemId": "projectfu",
+		"coreVersion": "13.0.0"
+	},
+	"sort": 0,
+	"_id": "RHSP000000000037",
+	"_key": "!items!RHSP000000000037"
+}
