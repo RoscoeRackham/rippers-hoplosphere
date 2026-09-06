@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Recipe: Setting — Weapon Up",
+	"name": "Recipe: Setting — Immunity",
 	"type": "treasure",
 	"img": "icons/svg/book.svg",
 	"system": {
@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Fabricate recipe card.</em> Accessory setting. 1 remnant + 6 shards + an apothecary phial, on the Lodge bench. The remnant selects the Quality. Shard count per brief §5.2.</p>",
+		"description": "<p><em>Fabricate recipe card.</em> Accessory setting. 1 remnant + 5 shards + an apothecary phial, on the Lodge bench. The remnant selects the Quality. Shard count per brief §5.2.</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-setting-weaponup"
+		"fuid": "card-setting-immunity"
 	},
 	"effects": [],
 	"ownership": {

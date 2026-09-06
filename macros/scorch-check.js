@@ -14,10 +14,14 @@
  *
  * TIERS (brief §5, THE SCORCH): Ruined / Crude / Sound. Crude = idiosyncratic, can never coagulate.
  *
- * ⚠ TODO(V3) — the exact installed-build call is not yet locked (public repo is older than the
- * installed v1.2.1). Two integration points below are marked TODO and fall back to a chat report so
- * the GM can craft manually if the API signature differs. Finalize once god supplies the exportSystem()
- * envelope + the confirmed craftRecipe signature from the live world.
+ * V3: the installed-build call IS now locked, read from the installed Fabricate 1.9.4 source:
+ *   craftRecipe({ actorId, recipeId, ingredientSetId, ingredientOptionOverrides,
+ *                 ingredientEssenceAllocation, componentSourceActorIds, interactive })
+ * There is NO resultOptionId parameter — the routed check picks the result, and the live system's
+ * routed check is still the empty default (the 2026-09-07 export proves it). So until a UI-built
+ * routed check exists, this macro rolls the tier and REPORTS it; the GM crafts the matching result.
+ * ⚠ Tier BAND VALUES below remain the V2 approximation — Austin has not ruled the thresholds
+ * (brief §8 says review after two months of play). Do not treat the bands as canon.
  *
  * USAGE: select the crafting actor's token, run the macro. It rolls the Scorch check, prints the tier,
  * and (if the API matches) calls Fabricate with the matching result option of the `the-scorch` recipe.
@@ -66,18 +70,21 @@ await roll.toMessage({
 
 // --- 5. hand the tier to Fabricate ----------------------------------------------------------------
 try {
-	const api = game.fabricate?.api;
-	if (!api) throw new Error('Fabricate API not found (game.fabricate.api).');
-	// TODO(V3): confirm the installed craftRecipe signature. Public 1.0.0 shape:
-	//   api.crafting.craftRecipe({ recipeId, sourceActorId, requirementOptionId:'req', resultOptionId })
-	// The installed v1.2.1 exposes craftRecipe() at a top level or under getRecipeManager()/CraftingEngine.
-	if (typeof api.craftRecipe === 'function') {
-		await api.craftRecipe({ recipeId: RECIPE_ID, sourceActorId: actor.id, requirementOptionId: 'req', resultOptionId });
-	} else if (api.crafting?.craftRecipe) {
-		await api.crafting.craftRecipe({ recipeId: RECIPE_ID, sourceActorId: actor.id, requirementOptionId: 'req', resultOptionId });
-	} else {
-		throw new Error('craftRecipe entry point not located on this build.');
+	// Installed 1.9.4 signature (read from the live bundle):
+	//   craftRecipe({ actorId, recipeId, ingredientSetId, ingredientOptionOverrides,
+	//                 ingredientEssenceAllocation, componentSourceActorIds, interactive })
+	// It carries NO resultOptionId — result choice belongs to the (still-unbuilt) routed check. On the
+	// current SIMPLE recipe the only craftable result is Crude, so: Crude tier → craft it directly;
+	// any other tier → report to chat and let the GM resolve (Ruined = consume, no output; Sound owed
+	// to the future routed version).
+	const craft = game.fabricate?.craft?.bind(game.fabricate)
+		?? game.fabricate?.api?.craftRecipe?.bind(game.fabricate.api)
+		?? game.fabricate?.api?.crafting?.craftRecipe?.bind(game.fabricate.api.crafting);
+	if (!craft) throw new Error('craftRecipe entry point not located on this build.');
+	if (resultOptionId !== 'crude') {
+		throw new Error('non-Crude tier — resolve manually (the simple recipe only mints Crude).');
 	}
+	await craft({ actorId: actor.id, recipeId: RECIPE_ID, interactive: true });
 	ui.notifications?.info(`The Scorch crafted: ${tier}.`);
 } catch (e) {
 	// Fallback: the GM crafts manually, picking the reported result option in the Fabricate UI.

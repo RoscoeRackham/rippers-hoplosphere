@@ -1,8 +1,8 @@
 {
 	"folder": null,
-	"name": "Melmoth Broadsheet",
+	"name": "Hyde Sinew",
 	"type": "treasure",
-	"img": "icons/svg/book.svg",
+	"img": "icons/svg/mystery-man.svg",
 	"system": {
 		"subtype": {
 			"value": "material"
@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Remnant (worked example).</em> The broadsheet that libelled the man — not anything off the creature, because the Wanderer is made of the lie. Its Quality goes custom rather than table.</p>",
+		"description": "<p><em>Remnant (worked example).</em> Transformed sinew that does not relax after death. Sets Weapon Up (melee). The tutorial fight hands it over.</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "remnant-melmoth"
+		"fuid": "remnant-hyde"
 	},
 	"effects": [],
 	"ownership": {

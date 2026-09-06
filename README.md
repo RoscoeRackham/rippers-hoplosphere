@@ -29,11 +29,16 @@ npm run unpack  # reverse: packs → src (round-trip a Foundry-edited pack)
 
 Built source-faithfully from `Look Here Claude/hoplosphere-economy-brief.md`. **No rules value is
 invented** — where Techno Fantasy Atlas sphere/accessory mechanics would go, a `⚠ owed` marker sits.
-Authored to the installed build's real **schemaVersion 4** envelope; per-recipe DC (`dcOverride`),
-progressive salvage and tool breakage are all native. Two pieces are deferred (the installed 1.9.2
-normalizer rejects offline-derived shapes, so both need a live UI-built export): **The Scorch's 3-tier
-routing** — it ships **simple** (single Crude/uncombinable output) for now; and the **Susurrus gathering
-environment** (`features.gathering` off) — Susurrus material still flows through the shard components. The
+**V3 (Sep 2026):** the system JSON is now rebased on the **owner's live 2026-09-07 export**
+(Fabricate 1.9.4 normalizer schema) — `npm run build` no longer overwrites it (guarded; see
+`tools/build-hoplosphere.mjs`). Filled since V2: **progressive RENDERING salvage** (1d2 per run),
+**Decoction `dcOverride: 13`** (Fixation rides the system default 10), the-scorch (simple) restored,
+the SCORCH macro bound to the confirmed installed `craftRecipe` signature, and the **source-actor
+bench ruling** encoded in `macros/craft-from-lodge-bench.js`. Still deferred, with the export as
+proof both remain uncapturable offline: **The Scorch's 3-tier routing** (the live routed check is the
+empty default; tier **band values are unruled** — the macro's bands are a flagged approximation) and
+the **Susurrus gathering environment** (`gatheringConfig.system` exports as `{}` — shape unrevealed;
+see `docs/IMPORT-and-verify.md` §6d for exactly what a populated export must show). The
 emotion/denial aspect register is **GM-side only** and appears in no player-facing string here (brief §3.4).
 
 No Project FU or Fabricate content is redistributed. Not for redistribution.

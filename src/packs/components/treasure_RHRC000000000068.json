@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Recipe: The Scorch",
+	"name": "Recipe: Setting — Melmoth",
 	"type": "treasure",
 	"img": "icons/svg/book.svg",
 	"system": {
@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Fabricate recipe card.</em> Street work. 2 shards of ANY aspect + scrap glass, in the street crucible. Reliably yields a Crude sphere — idiosyncratic, powerful, and it can never coagulate (caps the owner at one per effect). The 3-tier Ruined/Crude/Sound version is deferred.</p>",
+		"description": "<p><em>Fabricate recipe card.</em> Accessory setting (worked example, the better template). The broadsheet + 3 Susurrus shards + a phial, on the bench. Custom off-table Quality — a remnant that isn’t a body part is where the setting gets to say something.</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-the-scorch"
+		"fuid": "card-setting-melmoth"
 	},
 	"effects": [],
 	"ownership": {

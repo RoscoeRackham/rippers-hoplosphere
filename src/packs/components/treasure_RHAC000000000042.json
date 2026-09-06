@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Resistance Accessory",
+	"name": "Antistatus Accessory",
 	"type": "treasure",
 	"img": "icons/svg/ice-aura.svg",
 	"system": {
@@ -8,14 +8,14 @@
 			"value": "artifact"
 		},
 		"summary": {
-			"value": "700z"
+			"value": "500z"
 		},
-		"description": "<p><em>Accessory.</em> Resistance Accessory. Table Quality. One accessory slot per character (CRB). Book price 700z. Exact rare-item rules text: ⚠ owed.</p>",
+		"description": "<p><em>Accessory.</em> Antistatus Accessory. Table Quality. One accessory slot per character (CRB). Book price 500z. Exact rare-item rules text: ⚠ owed.</p>",
 		"showTitleCard": {
 			"value": false
 		},
 		"cost": {
-			"value": 700
+			"value": 500
 		},
 		"quantity": {
 			"value": 1
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "acc-resistance"
+		"fuid": "acc-antistatus"
 	},
 	"effects": [],
 	"ownership": {

@@ -1,8 +1,8 @@
 {
 	"folder": null,
-	"name": "Slag",
+	"name": "Melmoth Broadsheet",
 	"type": "treasure",
-	"img": "icons/svg/waste.svg",
+	"img": "icons/svg/book.svg",
 	"system": {
 		"subtype": {
 			"value": "material"
@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Ruined street work.</em> What a failed Scorch leaves. Ingredients are consumed on failure.</p>",
+		"description": "<p><em>Remnant (worked example).</em> The broadsheet that libelled the man — not anything off the creature, because the Wanderer is made of the lie. Its Quality goes custom rather than table.</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "scrap-slag"
+		"fuid": "remnant-melmoth"
 	},
 	"effects": [],
 	"ownership": {
@@ -36,6 +36,6 @@
 		"coreVersion": "13.0.0"
 	},
 	"sort": 0,
-	"_id": "RHSL000000000037",
-	"_key": "!items!RHSL000000000037"
+	"_id": "RHRM000000000041",
+	"_key": "!items!RHRM000000000041"
 }

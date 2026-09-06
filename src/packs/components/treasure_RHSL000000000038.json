@@ -1,8 +1,8 @@
 {
 	"folder": null,
-	"name": "Harvested Remnant",
+	"name": "Slag",
 	"type": "treasure",
-	"img": "icons/svg/mystery-man.svg",
+	"img": "icons/svg/waste.svg",
 	"system": {
 		"subtype": {
 			"value": "material"
@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Remnant (accessory seed).</em> The case-specific object a Quality is set from — GM-assigned per accessory; not always a body part. The remnant selects the Quality (brief §5.1). Best template: a remnant that isn’t a body part (§5.2).</p>",
+		"description": "<p><em>Ruined street work.</em> What a failed Scorch leaves. Ingredients are consumed on failure.</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "remnant-generic"
+		"fuid": "scrap-slag"
 	},
 	"effects": [],
 	"ownership": {
@@ -36,6 +36,6 @@
 		"coreVersion": "13.0.0"
 	},
 	"sort": 0,
-	"_id": "RHRM000000000038",
-	"_key": "!items!RHRM000000000038"
+	"_id": "RHSL000000000038",
+	"_key": "!items!RHSL000000000038"
 }

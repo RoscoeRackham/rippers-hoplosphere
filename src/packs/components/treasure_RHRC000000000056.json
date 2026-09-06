@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Recipe: Decoction — Ghastly (wave-2)",
+	"name": "Recipe: Decoction — Draining",
 	"type": "treasure",
 	"img": "icons/svg/book.svg",
 	"system": {
@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Fabricate recipe card.</em> Licensed afflictive refining. 3 Susurrus shards + quicklime, on the Lodge bench. DL ~13 (TODO(V3): per-system check). Runs 2–3 slots to seat.</p>",
+		"description": "<p><em>Fabricate recipe card.</em> Licensed afflictive refining. 3 Inanition shards + quicklime, on the Lodge bench. DL ~13 (TODO(V3): per-system check). Runs 2–3 slots to seat.</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-decoction-ghastly"
+		"fuid": "card-decoction-draining"
 	},
 	"effects": [],
 	"ownership": {

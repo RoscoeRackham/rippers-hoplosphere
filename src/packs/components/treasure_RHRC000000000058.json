@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Recipe: Investiture — Knightly",
+	"name": "Recipe: Investiture — Blessed",
 	"type": "treasure",
 	"img": "icons/svg/book.svg",
 	"system": {
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-investiture-knightly"
+		"fuid": "card-investiture-blessed"
 	},
 	"effects": [],
 	"ownership": {

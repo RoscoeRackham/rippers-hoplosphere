@@ -527,7 +527,17 @@ async function main() {
 	for (const doc of itemDocs) {
 		await fs.writeFile(path.join(PACK_DIR, `${doc.type}_${doc._id}.json`), JSON.stringify(doc, null, '\t') + '\n');
 	}
-	await fs.writeFile(path.join(SYS_DIR, 'rippers-hoplosphere-system.json'), JSON.stringify(exportModel, null, '\t') + '\n');
+	// V3 GUARD: since V3 the shipped system JSON is maintained from the OWNER'S LIVE EXPORT
+	// (Fabricate 1.9.4 normalizer schema — result ids, componentId echoes, plain-text descriptions),
+	// which this brief-derived generator cannot reproduce. Regenerating over it would clobber the
+	// live-verified file. Set FORCE_V2_SYSTEM=1 only to deliberately re-emit the V2 shape.
+	const sysPath = path.join(SYS_DIR, 'rippers-hoplosphere-system.json');
+	const existing = await fs.readFile(sysPath, 'utf8').catch(() => '');
+	if (existing.includes('"fabricateVersion": "1.9.4"') && process.env.FORCE_V2_SYSTEM !== '1') {
+		console.warn('SKIP system JSON: V3 (live-export-based) file present; packs regenerated only. FORCE_V2_SYSTEM=1 overrides.');
+	} else {
+		await fs.writeFile(sysPath, JSON.stringify(exportModel, null, '\t') + '\n');
+	}
 
 	// self-consistency pass over the schema-4 model
 	const compIds = new Set(sysComponents.map((c) => c.id));

@@ -92,3 +92,53 @@ Drag ingredients from the compendium into an actor, then:
   every `originItemUuid`/`registeredItemUuid` resolves; every recipe has exactly one result group; no routed
   recipes — The Scorch ships simple).
 - Pack compiles to a clean single-manifest LevelDB (`CURRENT` → `MANIFEST-000002`, one `.ldb`).
+
+---
+
+## 6. V3 (Sep 2026) — upgrade over the live V2 import
+
+The V3 file (`system/rippers-hoplosphere-system.json`) is rebased on the **owner's live export of
+2026-09-07** (Fabricate 1.9.4 normalizer schema), so it round-trips byte-stably against the installed
+build. Deltas over what the world holds: progressive RENDERING salvage (1d2 per run, results ×1),
+`dcOverride: 13` on the four DECOCTION recipes, `the-scorch` (simple) restored — the live world holds
+20 recipes and its recipe card with nothing behind it — and the nine `DL` description markers filled.
+
+### 6a. REQUIRED world setting — do this FIRST, in BOTH worlds
+
+**Settings → Configure Settings → Fabricate → Item Stack Quantity Field = `system.quantity.value`**
+
+Without it, ingredient consumption is a **silent no-op** (owner-confirmed live): crafting appears to
+work but eats nothing. Set it before any verify step, or every consumption check below lies.
+
+### 6b. Upgrade procedure (the world already holds the V2 import)
+
+Re-import **replaces cleanly — no removal needed** — provided both of:
+1. Import via the Fabricate system manager's import (or `game.fabricate.importSystemFromFile(file,
+   { overwriteExisting: true })`) with **overwrite existing** ON and **copy mode OFF** (keep ids) —
+   the importer resolves same-id entities as `overwritten`.
+2. The import log shows **21 recipes** afterwards (`the-scorch` restored).
+
+If the UI import offers no overwrite toggle, delete the `rippers-hoplosphere` system in the Fabricate
+manager first, then import. Player-held crafted ITEMS are world items and survive either route;
+custom tweaks made in the manager since V2 do NOT survive overwrite — export first if any exist.
+
+### 6c. V3 verify steps (live, after import)
+
+- Salvage a **Clotted Remains** → yield is **1–2 shards** (progressive `1d2`), not a flat 2. ⚠ If the
+  yield reads 0 or double, set `salvageResolutionMode` back to `simple` in the manager (restores flat 2)
+  and report — the progressive award path was schema-read offline, not live-proven.
+- Craft a **DECOCTION** → check rolls against **DC 13**; a FIXATION still rolls the system default 10.
+- `the-scorch` appears and mints a Crude Sphere; `macros/scorch-check.js` rolls the tier
+  (bands still the V2 approximation — **not canon**, no ruling exists) and crafts only on Crude.
+- Bench ruling: run `macros/craft-from-lodge-bench.js` with a PC selected — it crafts with the Lodge
+  actor's stores via `componentSourceActorIds` (installed 1.9.4 signature, read from the live bundle).
+
+### 6d. Susurrus gathering — still stubbed, deliberately
+
+The 2026-09-07 export proves `features.gathering:false`, `gatheringEnvironments: []` and
+`gatheringConfig.system: {}` — the per-environment element shape is **entirely unrevealed**, so any
+authored environment would be an invented schema (⚠ unverified-shape). To unblock it, a live export
+must show: **at least one populated `gatheringEnvironments[]` entry** (its node/task element shape,
+yield table, and check binding) **and a non-empty `gatheringConfig.system`** — i.e. the owner builds
+one throwaway gathering environment in the Fabricate UI, exports, and hands the file over. Susurrus
+material continues to flow through the ordinary shard components meanwhile.
