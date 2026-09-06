@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Swordbreaker Accessory",
+	"name": "Immunity Accessory",
 	"type": "treasure",
 	"img": "icons/svg/ice-aura.svg",
 	"system": {
@@ -8,14 +8,14 @@
 			"value": "artifact"
 		},
 		"summary": {
-			"value": "1000z"
+			"value": "1500z"
 		},
-		"description": "<p><em>Accessory.</em> Swordbreaker Accessory. Physical Resistance — the only route to it in this campaign (no physical sphere exists). One accessory slot per character (CRB). Book price 1000z. Exact rare-item rules text: ⚠ owed.</p>",
+		"description": "<p><em>Accessory.</em> Immunity Accessory. Table Quality. One accessory slot per character (CRB). Book price 1500z. Exact rare-item rules text: ⚠ owed.</p>",
 		"showTitleCard": {
 			"value": false
 		},
 		"cost": {
-			"value": 1000
+			"value": 1500
 		},
 		"quantity": {
 			"value": 1
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "acc-swordbreaker"
+		"fuid": "acc-immunity"
 	},
 	"effects": [],
 	"ownership": {

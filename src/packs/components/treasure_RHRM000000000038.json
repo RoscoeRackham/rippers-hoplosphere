@@ -1,16 +1,16 @@
 {
 	"folder": null,
-	"name": "Recipe: Investiture — Knightly",
+	"name": "Harvested Remnant",
 	"type": "treasure",
-	"img": "icons/svg/book.svg",
+	"img": "icons/svg/mystery-man.svg",
 	"system": {
 		"subtype": {
-			"value": "treasure"
+			"value": "material"
 		},
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Fabricate recipe card.</em> Creature-type bane. 2 shards of ANY aspect + the matrix, on the Lodge bench. The matrix alone selects the result (cheaper in shards — you are paying for the metal).</p>",
+		"description": "<p><em>Remnant (accessory seed).</em> The case-specific object a Quality is set from — GM-assigned per accessory; not always a body part. The remnant selects the Quality (brief §5.1). Best template: a remnant that isn’t a body part (§5.2).</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-investiture-knightly"
+		"fuid": "remnant-generic"
 	},
 	"effects": [],
 	"ownership": {
@@ -36,6 +36,6 @@
 		"coreVersion": "13.0.0"
 	},
 	"sort": 0,
-	"_id": "RHRC000000000058",
-	"_key": "!items!RHRC000000000058"
+	"_id": "RHRM000000000038",
+	"_key": "!items!RHRM000000000038"
 }

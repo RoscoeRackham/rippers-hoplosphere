@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Recipe: Fixation — Arctic",
+	"name": "Recipe: Fixation — Volcanic",
 	"type": "treasure",
 	"img": "icons/svg/book.svg",
 	"system": {
@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Fabricate recipe card.</em> Licensed elemental refining. 3 Algor shards + an apothecary phial, on the Lodge bench. DL ~10 (TODO(V3): per-system check). Ingredients returned on failure.</p>",
+		"description": "<p><em>Fabricate recipe card.</em> Licensed elemental refining. 3 Empyreuma shards + an apothecary phial, on the Lodge bench. DL ~10 (TODO(V3): per-system check). Ingredients returned on failure.</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-fixation-arctic"
+		"fuid": "card-fixation-volcanic"
 	},
 	"effects": [],
 	"ownership": {

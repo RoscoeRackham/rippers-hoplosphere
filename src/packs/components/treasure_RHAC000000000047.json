@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "The Hyde",
+	"name": "Melmoth",
 	"type": "treasure",
 	"img": "icons/svg/ice-aura.svg",
 	"system": {
@@ -8,14 +8,14 @@
 			"value": "artifact"
 		},
 		"summary": {
-			"value": "2000z"
+			"value": ""
 		},
-		"description": "<p><em>Accessory.</em> The Hyde. Weapon Up (melee), set from Hyde sinew. Worked example. One accessory slot per character (CRB). Book price 2000z. Exact rare-item rules text: ⚠ owed.</p>",
+		"description": "<p><em>Accessory.</em> Melmoth. Custom off-table Quality, set from the broadsheet. Quality text: ⚠ owed (Austin authors). Worked example — the better template. One accessory slot per character (CRB). Book price nullz. Exact rare-item rules text: ⚠ owed.</p>",
 		"showTitleCard": {
 			"value": false
 		},
 		"cost": {
-			"value": 2000
+			"value": 0
 		},
 		"quantity": {
 			"value": 1
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "acc-hyde"
+		"fuid": "acc-melmoth"
 	},
 	"effects": [],
 	"ownership": {

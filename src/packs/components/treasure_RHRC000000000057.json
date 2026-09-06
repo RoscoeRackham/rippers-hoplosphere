@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Recipe: Decoction — Ghastly (wave-2)",
+	"name": "Recipe: Investiture — Blessed",
 	"type": "treasure",
 	"img": "icons/svg/book.svg",
 	"system": {
@@ -10,7 +10,7 @@
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Fabricate recipe card.</em> Licensed afflictive refining. 3 Susurrus shards + quicklime, on the Lodge bench. DL ~13 (TODO(V3): per-system check). Runs 2–3 slots to seat.</p>",
+		"description": "<p><em>Fabricate recipe card.</em> Creature-type bane. 2 shards of ANY aspect + the matrix, on the Lodge bench. The matrix alone selects the result (cheaper in shards — you are paying for the metal).</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-decoction-ghastly"
+		"fuid": "card-investiture-blessed"
 	},
 	"effects": [],
 	"ownership": {

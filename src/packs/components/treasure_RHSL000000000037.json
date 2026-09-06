@@ -1,16 +1,16 @@
 {
 	"folder": null,
-	"name": "Recipe: Investiture — Knightly",
+	"name": "Slag",
 	"type": "treasure",
-	"img": "icons/svg/book.svg",
+	"img": "icons/svg/waste.svg",
 	"system": {
 		"subtype": {
-			"value": "treasure"
+			"value": "material"
 		},
 		"summary": {
 			"value": ""
 		},
-		"description": "<p><em>Fabricate recipe card.</em> Creature-type bane. 2 shards of ANY aspect + the matrix, on the Lodge bench. The matrix alone selects the result (cheaper in shards — you are paying for the metal).</p>",
+		"description": "<p><em>Ruined street work.</em> What a failed Scorch leaves. Ingredients are consumed on failure.</p>",
 		"showTitleCard": {
 			"value": false
 		},
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-investiture-knightly"
+		"fuid": "scrap-slag"
 	},
 	"effects": [],
 	"ownership": {
@@ -36,6 +36,6 @@
 		"coreVersion": "13.0.0"
 	},
 	"sort": 0,
-	"_id": "RHRC000000000058",
-	"_key": "!items!RHRC000000000058"
+	"_id": "RHSL000000000037",
+	"_key": "!items!RHSL000000000037"
 }

@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Recipe: Setting — Antistatus",
+	"name": "Recipe: Setting — Resistance",
 	"type": "treasure",
 	"img": "icons/svg/book.svg",
 	"system": {
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-setting-antistatus"
+		"fuid": "card-setting-resistance"
 	},
 	"effects": [],
 	"ownership": {

@@ -522,21 +522,26 @@ async function emptyDir(dir) {
 }
 
 async function main() {
-	await emptyDir(PACK_DIR);
-	await fs.mkdir(SYS_DIR, { recursive: true });
-	for (const doc of itemDocs) {
-		await fs.writeFile(path.join(PACK_DIR, `${doc.type}_${doc._id}.json`), JSON.stringify(doc, null, '\t') + '\n');
-	}
 	// V3 GUARD: since V3 the shipped system JSON is maintained from the OWNER'S LIVE EXPORT
 	// (Fabricate 1.9.4 normalizer schema — result ids, componentId echoes, plain-text descriptions),
-	// which this brief-derived generator cannot reproduce. Regenerating over it would clobber the
-	// live-verified file. Set FORCE_V2_SYSTEM=1 only to deliberately re-emit the V2 shape.
+	// which this brief-derived generator cannot reproduce. Worse, this generator's PACK emit
+	// RENUMBERS item ids (proven: a full regen dangles 4 registeredItemUuid refs the live world
+	// binds), so regenerating EITHER artefact over the V3 state breaks id sync with the live world.
+	// Set FORCE_V2_SYSTEM=1 only to deliberately re-emit the whole V2 shape (packs included).
 	const sysPath = path.join(SYS_DIR, 'rippers-hoplosphere-system.json');
 	const existing = await fs.readFile(sysPath, 'utf8').catch(() => '');
-	if (existing.includes('"fabricateVersion": "1.9.4"') && process.env.FORCE_V2_SYSTEM !== '1') {
-		console.warn('SKIP system JSON: V3 (live-export-based) file present; packs regenerated only. FORCE_V2_SYSTEM=1 overrides.');
-	} else {
+	const v3Present = existing.includes('"fabricateVersion": "1.9.4"') && process.env.FORCE_V2_SYSTEM !== '1';
+	if (!v3Present) {
+		await emptyDir(PACK_DIR);
+		await fs.mkdir(SYS_DIR, { recursive: true });
+		for (const doc of itemDocs) {
+			await fs.writeFile(path.join(PACK_DIR, `${doc.type}_${doc._id}.json`), JSON.stringify(doc, null, '\t') + '\n');
+		}
 		await fs.writeFile(sysPath, JSON.stringify(exportModel, null, '\t') + '\n');
+	} else {
+		console.warn('SKIP all emits: V3 (live-export-based) system JSON present — this generator cannot');
+		console.warn('reproduce the live ids (its pack emit renumbers them). Edit src/packs + the system');
+		console.warn('JSON surgically instead, or FORCE_V2_SYSTEM=1 to deliberately re-emit the V2 shape.');
 	}
 
 	// self-consistency pass over the schema-4 model

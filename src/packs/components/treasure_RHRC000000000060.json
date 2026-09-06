@@ -1,6 +1,6 @@
 {
 	"folder": null,
-	"name": "Recipe: Investiture — Skeptical",
+	"name": "Recipe: Investiture — Disrupting",
 	"type": "treasure",
 	"img": "icons/svg/book.svg",
 	"system": {
@@ -24,7 +24,7 @@
 			"value": ""
 		},
 		"source": "Rippers Unmasked — Hoplosphere Economy",
-		"fuid": "card-investiture-skeptical"
+		"fuid": "card-investiture-disrupting"
 	},
 	"effects": [],
 	"ownership": {
