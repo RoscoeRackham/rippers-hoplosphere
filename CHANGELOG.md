@@ -1,5 +1,17 @@
 # Changelog — rippers-hoplosphere
 
+## 0.2.2 — salvage works again (2026-09-07)
+- **Fixed: RENDERING refused to run.** `salvageResolutionMode` shipped as `progressive` (inherited from
+  the live export at 0.1.3), and progressive resolution requires a numeric `difficulty` on every salvage
+  result's component — no component had one, so every salvage was rejected with *"Result 1 references
+  component without valid difficulty"*. RENDERING has been unusable since 0.1.3. The mode is now
+  **`simple`** (Austin's ruling, 7 Sep 2026), which needs no per-component difficulty.
+  - One key changed, `system.salvageResolutionMode`. No `difficulty` values were added, no result entries
+    added, no ids, outputs or components touched.
+- **Measured yield: 1 shard per Clotted Remains**, on a passed salvage check. The check is unchanged —
+  DEX + INS against DL 10 — and `consumeComponentOnFail` remains `true`, so a *failed* check breaks the
+  remains for nothing. That is the shipped configuration, not a new behaviour.
+
 ## 0.2.1 — the check is an FU check, and two icons existed only in our heads
 - **Fixed: the crafting check rolled whatever Fabricate supplied, not a Fabula Ultima check.** Every
   `rollFormula` in `craftingCheck` and `salvageCraftingCheck` shipped empty, so the system contributed

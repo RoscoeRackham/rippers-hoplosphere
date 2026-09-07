@@ -804,7 +804,7 @@
       "defaultModifierPolicy": "addAll",
       "defaultModifierIds": []
     },
-    "salvageResolutionMode": "progressive",
+    "salvageResolutionMode": "simple",
     "toolBreakage": {
       "authority": "toolSpecific"
     },
