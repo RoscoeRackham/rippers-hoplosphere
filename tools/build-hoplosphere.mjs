@@ -163,7 +163,7 @@ for (const [slug, name, desc] of MATRICES) {
 // ---- 2d. TOOLS (catalysts — present, not consumed) -----------------------------------------------
 addComponent({ slug: 'tool-bench', prefix: 'RHTL', name: 'Lodge Bench', subtype: 'material',
 	desc: p('<em>Tool (catalyst).</em> The licensed bench. Set Immune — never breaks. Required present for Fixation, Decoction, Investiture and Setting; not consumed. A bench requires a Lodge subscription (brief §5).'),
-	flags: { tool: true, breakable: false }, img: 'icons/svg/anvil.svg' });
+	flags: { tool: true, breakable: false }, img: 'icons/svg/clockwork.svg' }); // anvil.svg is NOT a core icon
 addComponent({ slug: 'tool-crucible', prefix: 'RHTL', name: 'Street Crucible', subtype: 'material',
 	desc: p('<em>Tool (catalyst).</em> The street crucible. Breakable. Required present for The Scorch; not consumed by the recipe, but may shatter in play (GM-adjudicated).'),
 	flags: { tool: true, breakable: true }, img: 'icons/svg/cave.svg' });
@@ -218,7 +218,7 @@ addComponent({
 
 // scrap yield from a Ruined Scorch
 addComponent({ slug: 'scrap-slag', prefix: 'RHSL', name: 'Slag', subtype: 'material',
-	desc: p('<em>Ruined street work.</em> What a failed Scorch leaves. Ingredients are consumed on failure.'), img: 'icons/svg/waste.svg' });
+	desc: p('<em>Ruined street work.</em> What a failed Scorch leaves. Ingredients are consumed on failure.'), img: 'icons/svg/ruins.svg' }); // waste.svg is NOT a core icon
 
 // ---- 2f. REMNANTS (Setting inputs) ---------------------------------------------------------------
 addComponent({ slug: 'remnant-generic', prefix: 'RHRM', name: 'Harvested Remnant', subtype: 'material',
@@ -460,7 +460,15 @@ for (const r of recipes) {
 }
 
 // the three system-level checks (shape locked from the empty-system export)
-const checkCommon = () => ({ rollFormula: '', dc: 10, thresholdMode: 'meet', dcMode: 'static', tiers: [], macroUuid: null, checkBreakage: { triggers: [] } });
+// FU CHECK FORMULA (Austin's ruling, 2026-09-07): a crafting check is a Fabula Ultima accuracy-style
+// check — DEX + INS, each rolled at the actor's own current die size, against the DL. Left empty,
+// Fabricate falls back to its own default d20, which is not an FU check at all.
+// Fabricate substitutes @-paths against the crafting actor's getRollData() (Roll.replaceFormulaData)
+// BEFORE parsing, so the die SIZE can be dynamic; projectfu's roll data is rooted at system, giving
+// attributes.<attr>.current. A formula that still holds an @ or a NaN after substitution is reported
+// as unresolved rather than rolled, so a wrong path fails loudly.
+const FU_CHECK_FORMULA = '1d@attributes.dex.current + 1d@attributes.ins.current';
+const checkCommon = () => ({ rollFormula: FU_CHECK_FORMULA, dc: 10, thresholdMode: 'meet', dcMode: 'static', tiers: [], macroUuid: null, checkBreakage: { triggers: [] } });
 const craftingCheck = {
 	enabled: true, mode: 'passFail',
 	consumption: { consumeIngredientsOnFail: false, breakToolsOnFail: false }, // FIXATION/DECOCTION/etc. return on failure
@@ -469,7 +477,8 @@ const craftingCheck = {
 	// routed left at the empty default — nothing uses it (SCORCH ships simple). The 3-tier routed check is
 	// deferred: the installed 1.9.2 normalizer rejects any offline-derived routed shape, so its canonical form
 	// must be captured from a UI-built check exported live (card ROUTED-scorch-tiers-future).
-	routed: { type: 'relative', rollFormula: '', dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
+	routed: { type: 'relative', rollFormula: FU_CHECK_FORMULA, dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
+	// progressive.rollFormula is an AWARD-COUNT roll, not a check — it stays unset here (unused: mode is passFail).
 	progressive: { awardMode: 'equal', rollFormula: '', checkBreakage: { triggers: [] } },
 	outcomes: ['fail', 'pass'], defaultModifierPolicy: 'addAll', defaultModifierIds: [],
 };
@@ -477,8 +486,8 @@ const salvageCraftingCheck = {
 	enabled: false, // RENDERING yields without a gate; the 1–2-rising yield is a tunable progressive rollFormula below
 	consumption: { consumeComponentOnFail: true, breakToolsOnFail: false }, failureResultPolicy: 'perRecord',
 	simple: checkCommon(),
-	routed: { type: 'relative', rollFormula: '', dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
-	progressive: { awardMode: 'equal', rollFormula: '1d2', checkBreakage: { triggers: [] } }, // brief: start yield 1–2, tunable
+	routed: { type: 'relative', rollFormula: FU_CHECK_FORMULA, dc: 15, thresholdMode: 'meet', dcMode: 'static', macroUuid: null, tiers: [], relativeOutcomes: [], fixedOutcomes: [], checkBreakage: { triggers: [] } },
+	progressive: { awardMode: 'equal', rollFormula: '1d2', checkBreakage: { triggers: [] } }, // brief: start yield 1–2, tunable — a YIELD, not a check; never the FU formula
 	outcomes: ['fail', 'pass'], defaultModifierPolicy: 'addAll', defaultModifierIds: [],
 };
 const gatheringCraftingCheck = {

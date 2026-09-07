@@ -2,7 +2,7 @@
 	"folder": null,
 	"name": "Lodge Bench",
 	"type": "treasure",
-	"img": "icons/svg/anvil.svg",
+	"img": "icons/svg/clockwork.svg",
 	"system": {
 		"subtype": {
 			"value": "material"

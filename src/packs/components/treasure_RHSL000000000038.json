@@ -2,7 +2,7 @@
 	"folder": null,
 	"name": "Slag",
 	"type": "treasure",
-	"img": "icons/svg/waste.svg",
+	"img": "icons/svg/ruins.svg",
 	"system": {
 		"subtype": {
 			"value": "material"

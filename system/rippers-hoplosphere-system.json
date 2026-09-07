@@ -778,7 +778,7 @@
       ],
       "routed": {
         "type": "relative",
-        "rollFormula": "",
+        "rollFormula": "1d@attributes.dex.current + 1d@attributes.ins.current",
         "dc": 15,
         "thresholdMode": "meet",
         "dcMode": "static",
@@ -791,7 +791,7 @@
         }
       },
       "simple": {
-        "rollFormula": "",
+        "rollFormula": "1d@attributes.dex.current + 1d@attributes.ins.current",
         "dc": 10,
         "thresholdMode": "meet",
         "dcMode": "static",
@@ -816,7 +816,7 @@
       },
       "failureResultPolicy": "perRecord",
       "simple": {
-        "rollFormula": "",
+        "rollFormula": "1d@attributes.dex.current + 1d@attributes.ins.current",
         "dc": 10,
         "thresholdMode": "meet",
         "dcMode": "static",
@@ -828,7 +828,7 @@
       },
       "routed": {
         "type": "relative",
-        "rollFormula": "",
+        "rollFormula": "1d@attributes.dex.current + 1d@attributes.ins.current",
         "dc": 15,
         "thresholdMode": "meet",
         "dcMode": "static",
@@ -1711,7 +1711,7 @@
       {
         "id": "scrap-slag",
         "name": "Slag",
-        "img": "icons/svg/waste.svg",
+        "img": "icons/svg/ruins.svg",
         "description": "Ruined street work. What a failed Scorch leaves. Ingredients are consumed on failure.",
         "originItemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSL000000000037",
         "registeredItemUuid": "Compendium.rippers-hoplosphere.components.Item.RHSL000000000037",
@@ -1947,7 +1947,7 @@
         "componentId": null,
         "label": "Lodge Bench",
         "name": "Lodge Bench",
-        "img": "icons/svg/anvil.svg",
+        "img": "icons/svg/clockwork.svg",
         "description": "<p><em>Tool (catalyst).</em> The licensed bench. Set Immune — never breaks. Required present for Fixation, Decoction, Investiture and Setting; not consumed. A bench requires a Lodge subscription (brief §5).</p>",
         "registeredItemUuid": "Compendium.rippers-hoplosphere.components.Item.RHTL000000000020",
         "originItemUuid": "Compendium.rippers-hoplosphere.components.Item.RHTL000000000020",
