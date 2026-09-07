@@ -2033,11 +2033,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-algor",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "algor",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "algor": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2093,11 +2105,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-empyreuma",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "empyreuma",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "empyreuma": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2153,11 +2177,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-sordes",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "sordes",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "sordes": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2213,11 +2249,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-inanition",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "inanition",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "inanition": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2273,11 +2321,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-susurrus",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "susurrus",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "susurrus": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2333,11 +2393,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-empyreuma",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "empyreuma",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "empyreuma": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2394,11 +2466,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-sordes",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "sordes",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "sordes": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2455,11 +2539,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-inanition",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "inanition",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "inanition": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2516,11 +2612,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-susurrus",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "susurrus",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "susurrus": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2577,11 +2685,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 2
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 2
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2637,11 +2757,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 2
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 2
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2697,11 +2829,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 2
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 2
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2757,11 +2901,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 2
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 2
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2831,11 +2987,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 2
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 2
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2905,11 +3073,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 2
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 2
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -2979,11 +3159,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -3053,11 +3245,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 5
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 5
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -3127,11 +3331,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 6
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 6
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -3201,11 +3417,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 6
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 6
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -3275,11 +3503,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-susurrus",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "susurrus",
+                    "amount": 3
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "susurrus": 3
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [
@@ -3335,11 +3575,23 @@
                   "quantity": 1
                 }
               ]
+            },
+            {
+              "id": "grp-ess-shard",
+              "name": "",
+              "options": [
+                {
+                  "match": {
+                    "type": "essence",
+                    "essenceId": "shard",
+                    "amount": 2
+                  },
+                  "quantity": 1
+                }
+              ]
             }
           ],
-          "essences": {
-            "shard": 2
-          }
+          "essences": {}
         }
       ],
       "resultGroups": [

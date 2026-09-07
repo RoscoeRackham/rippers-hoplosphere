@@ -359,7 +359,8 @@ addRecipe({
 //   essences        → system.essenceDefinitions[]
 //   components       → system.components[] (itemUuid → originItemUuid + registeredItemUuid; salvageOptions → salvage.resultGroups)
 //   tools bench/cruc → system.tools[] (NOT components; recipe catalysts → recipe.toolIds)
-//   recipes          → TOP-LEVEL recipes[] (requirementOptions.essences → ingredientSet.essences map;
+//   recipes          → TOP-LEVEL recipes[] (requirementOptions.essences → ingredientGroups[].options[]
+//                       .match{type:essence,amount} — NOT the set-level essences map, which only gates;
 //                       .ingredients → ingredientGroups[].options[].match{type:component}; .catalysts → toolIds;
 //                       resultOptions → resultGroups[{id,name,results:[{componentId,quantity}]}])
 //   recipe cards     → system.recipeItemDefinitions[] (the learnable holder; recipeIds links the recipe)
@@ -417,7 +418,19 @@ for (const r of recipes) {
 	const ingredientGroups = Object.entries(rq.ingredients).map(([componentId, quantity]) => ({
 		id: `grp-${componentId}`, options: [{ quantity, match: { type: 'component', componentId } }],
 	}));
-	const ingredientSets = [{ id: `${r.id}-set`, essences: rq.essences, ingredientGroups }];
+	// ESSENCE COST IS A GROUP, NOT THE SET-LEVEL MAP. Measured against Fabricate 1.9.5 in the e2e
+	// harness (hive/VERIFY-fabricate-consumption.md): ingredientSets[].essences is an AVAILABILITY
+	// GATE ONLY — the resolver checks it, returns essenceAllocation {}, and consumes nothing, so a
+	// craft spent the matrix and handed out the sphere FREE. Expressed as an ingredient-group option
+	// the same cost deducts exactly. Note the key is `amount`, NOT `quantity`; Fabricate's validator
+	// rejects the latter ("Essence ingredient match requires an essence and a positive amount").
+	for (const [essenceId, amount] of Object.entries(rq.essences)) {
+		ingredientGroups.push({
+			id: `grp-ess-${essenceId}`,
+			options: [{ quantity: 1, match: { type: 'essence', essenceId, amount } }],
+		});
+	}
+	const ingredientSets = [{ id: `${r.id}-set`, essences: {}, ingredientGroups }];
 	const resultGroups = r.resultOptions.map((o) => ({ id: o.id, name: o.name, results: asResults(o.results) }));
 	// No recipe is routed in this build (SCORCH ships simple — see its definition). The routed-by-check
 	// path (resultSelection {provider:'check'} + outcomeRouting map) is deferred until the canonical routed
@@ -573,8 +586,14 @@ async function main() {
 			}
 		}
 		for (const s of r.ingredientSets) {
-			for (const k of Object.keys(s.essences)) if (!essIds.has(k)) problems.push(`recipe ${r.id}: essence ${k} not defined`);
-			for (const g of s.ingredientGroups) for (const o of g.options) if (o.match.type === 'component' && !compIds.has(o.match.componentId)) problems.push(`recipe ${r.id}: ingredient ${o.match.componentId} not a component`);
+			for (const k of Object.keys(s.essences)) problems.push(`recipe ${r.id}: essence ${k} left in the set-level map — it gates but never deducts`);
+			for (const g of s.ingredientGroups) for (const o of g.options) {
+				if (o.match.type === 'component' && !compIds.has(o.match.componentId)) problems.push(`recipe ${r.id}: ingredient ${o.match.componentId} not a component`);
+				if (o.match.type === 'essence') {
+					if (!essIds.has(o.match.essenceId)) problems.push(`recipe ${r.id}: essence ${o.match.essenceId} not defined`);
+					if (!(Number(o.match.amount) > 0)) problems.push(`recipe ${r.id}: essence ${o.match.essenceId} needs a positive \`amount\` (not \`quantity\`)`);
+				}
+			}
 		}
 		for (const g of r.resultGroups) for (const p of g.results) if (!compIds.has(p.componentId)) problems.push(`recipe ${r.id}: product ${p.componentId} not a component`);
 		for (const tid of r.toolIds) if (!toolIds.has(tid)) problems.push(`recipe ${r.id}: tool ${tid} not defined`);
